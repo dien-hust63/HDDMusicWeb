@@ -1,0 +1,6 @@
+{
+  "name": "Những gì anh nói",
+  "artist": "BOZITT",
+  "date": "10/1/2020",
+  "genre": "ballad"
+}

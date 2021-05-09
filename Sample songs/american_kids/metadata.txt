@@ -1,0 +1,6 @@
+{
+  "name": "American Kids",
+  "artist": "Kenny Chesney",
+  "date": "30/6/2014",
+  "genre": "country"
+}

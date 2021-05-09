@@ -1,0 +1,6 @@
+{
+  "name": "Sài Gòn đau lòng quá",
+  "artist": "Hứa Kim Tuyền x Hoàng Duyên",
+  "date": "28/3/2021",
+  "genre": "ballad"
+}

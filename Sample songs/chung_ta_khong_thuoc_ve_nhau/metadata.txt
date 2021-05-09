@@ -1,0 +1,6 @@
+{
+  "name": "Chúng ta không thuộc về nhau",
+  "artist": "Sơn tùng MTP",
+  "date": "14/1/2015",
+  "genre": "pop"
+}

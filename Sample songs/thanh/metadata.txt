@@ -1,0 +1,6 @@
+{
+  "name": "Thanh",
+  "artist": "Thịnh Suy",
+  "date": "28/4/2021",
+  "genre": "pop"
+}

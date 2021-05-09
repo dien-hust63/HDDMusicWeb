@@ -1,0 +1,6 @@
+{
+  "name": "Vùng ký ức",
+  "artist": "Chillies",
+  "date": "27/3/2020",
+  "genre": "pop-rock"
+}

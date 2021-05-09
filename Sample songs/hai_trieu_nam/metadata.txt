@@ -1,0 +1,6 @@
+{
+  "name": "Hai triệu năm",
+  "artist": "Đen Vâu",
+  "date": "20/6/2019",
+  "genre": "rap"
+}

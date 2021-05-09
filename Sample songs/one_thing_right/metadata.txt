@@ -1,0 +1,6 @@
+{
+  "name": "One thing right,
+  "artist": "Marshmello x Kane Brown",
+  "date": "18/7/2019",
+  "genre": "country"
+}

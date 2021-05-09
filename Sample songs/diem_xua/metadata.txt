@@ -1,0 +1,6 @@
+{
+  "name": "Diễm Xưa",
+  "artist": "Hà Lê",
+  "date": "30/11/2018",
+  "genre": "pop"
+}

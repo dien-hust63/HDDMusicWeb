@@ -1,0 +1,6 @@
+{
+  "name": "Tuổi đá buồn",
+  "artist": "Hà Lê",
+  "date": "19/6/2020",
+  "genre": "pop"
+}

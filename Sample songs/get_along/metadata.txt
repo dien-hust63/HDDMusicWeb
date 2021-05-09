@@ -1,0 +1,6 @@
+{
+  "name": "Get Along",
+  "artist": "Kenny Chesney",
+  "date": "24/5/2018",
+  "genre": "country"
+}

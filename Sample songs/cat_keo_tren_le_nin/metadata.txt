@@ -1,0 +1,6 @@
+{
+  "name": "Cắt kéo trên Lê-nin",
+  "artist": "Low G",
+  "date": "15/10/2019",
+  "genre": "Rap-Jazz"
+}

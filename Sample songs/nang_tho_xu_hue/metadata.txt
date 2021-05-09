@@ -1,0 +1,6 @@
+{
+  "name": "Nàng thơ xứ Huế",
+  "artist": "Thùy Chi",
+  "date": "21/11/2018",
+  "genre": "ballad"
+}

@@ -9,17 +9,17 @@ class VanillaController {
 	public $doNotRenderHeader;
 	public $render;
 
-	function __construct($controller, $action) {
+	function __construct($controller, $action) { 
 		
 		global $inflect;
 
 		$this->_controller = ucfirst($controller);
 		$this->_action = $action;
 		
-		$model = ucfirst($inflect->singularize($controller));
+		// $model = ucfirst($inflect->singularize($controller));
 		$this->doNotRenderHeader = 0;
 		$this->render = 1;
-		$this->$model = new $model;
+		// $this->$model = new $model;
 		$this->_template = new Template($controller,$action);
 
 	}

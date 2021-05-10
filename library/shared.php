@@ -64,7 +64,6 @@ function routeURL($url) {
 				return preg_replace( $pattern, $result, $url ); 
 			}
 	}
-	echo $url;
 
 	return ($url);
 }
@@ -72,19 +71,19 @@ function routeURL($url) {
 /** Main Call Function **/
 
 function callHook() {
-	global $url; 
+	global $url; //index 
 	global $default;
 
 	$queryString = array();
 
 	if (!isset($url)) {
-		$controller = $default['controller']; // categories
+		$controller = $default['controller']; 
 		$action = $default['action']; // index
 	} else {
 		$url = routeURL($url); 
 		$urlArray = array();
 		$urlArray = explode("/",$url);
-		$controller = $urlArray[0]; // categories
+		$controller = $urlArray[0]; 
 		array_shift($urlArray);
 		if (isset($urlArray[0])) {
 			$action = $urlArray[0];
@@ -96,14 +95,14 @@ function callHook() {
 		$queryString = $urlArray; //empty
 	}
 	
-	$controllerName = ucfirst($controller).'Controller'; //CategoriesController
+	$controllerName = ucfirst($controller).'Controller'; //IndexController
 
-	$dispatch = new $controllerName($controller,$action); //object:  new CategoriesController('categories', 'index');
+	$dispatch = new $controllerName($controller,$action); //object:  new IndexController('index', 'index');
 	
 	if ((int)method_exists($controllerName, $action)) {
-		call_user_func_array(array($dispatch,"beforeAction"),$queryString);
-		call_user_func_array(array($dispatch,$action),$queryString); // call index
-		call_user_func_array(array($dispatch,"afterAction"),$queryString);
+		// call_user_func_array(array($dispatch,"beforeAction"),$queryString);
+		call_user_func_array(array($dispatch,$action),$queryString); // dispatch -> index ( dispatch is instance of IndexController)
+		// call_user_func_array(array($dispatch,"afterAction"),$queryString);
 	} else {
 		/* Error Generation Code Here */
 	}

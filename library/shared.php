@@ -83,7 +83,7 @@ function callHook() {
 		$url = routeURL($url); 
 		$urlArray = array();
 		$urlArray = explode("/",$url);
-		$controller = $urlArray[0]; 
+		$controller = $urlArray[0];
 		array_shift($urlArray);
 		if (isset($urlArray[0])) {
 			$action = $urlArray[0];
@@ -92,7 +92,7 @@ function callHook() {
 			//in here
 			$action = 'index'; // Default Action  
 		}
-		$queryString = $urlArray; //empty
+		$queryString = $urlArray; 
 	}
 	
 	$controllerName = ucfirst($controller).'Controller'; //IndexController

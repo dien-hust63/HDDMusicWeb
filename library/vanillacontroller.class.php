@@ -13,8 +13,8 @@ class VanillaController {
 		
 		global $inflect;
 
-		$this->_controller = ucfirst($controller);
-		$this->_action = $action;
+		$this->_controller = ucfirst($controller); //Index
+		$this->_action = $action; //index
 		
 		// $model = ucfirst($inflect->singularize($controller));
 		$this->doNotRenderHeader = 0;

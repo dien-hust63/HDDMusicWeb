@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends VanillaController {
+class IndexController extends Controller {
     function index(){
        $this -> set('index','index');
     }

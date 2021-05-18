@@ -19,9 +19,8 @@ class Template {
 	/** Display Template **/
 	
     function render($doNotRenderHeader = 0) {
-		
 		$html = new HTML;
-		extract($this->variables);
+		extract($this->variables); // $artist = artist
 		
 		if ($doNotRenderHeader == 0) {
 			

@@ -1,4 +1,4 @@
-// Vanilla Javascript
+
 
 function jumpTo(path,confirmMessage) {
 	var answer = confirm(confirmMessage);

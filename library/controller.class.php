@@ -1,6 +1,6 @@
 <?php
 
-class VanillaController {
+class Controller {
 	
 	protected $_controller;
 	protected $_action;
@@ -11,21 +11,21 @@ class VanillaController {
 
 	function __construct($controller, $action) { 
 		
-		global $inflect;
 
 		$this->_controller = ucfirst($controller); //Index
 		$this->_action = $action; //index
 		
-		// $model = ucfirst($inflect->singularize($controller));
+		$model = ucfirst($controller); 
 		$this->doNotRenderHeader = 0;
 		$this->render = 1;
-		// $this->$model = new $model;
-		$this->_template = new Template($controller,$action);
+		$this->$model = new $model;
+		$this->_template = new Template($controller,$action); 
 
 	}
 
 	function set($name,$value) {
 		$this->_template->set($name,$value);
+		
 	}
 
 	function __destruct() {

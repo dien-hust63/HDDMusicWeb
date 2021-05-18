@@ -57,10 +57,10 @@ function performAction($controller,$action,$queryString = null,$render = 0) {
 /** Routing **/
 
 function routeURL($url) {
-	global $routing; //   '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1_\2/\3'
+	global $routing; 
 
 	foreach ( $routing as $pattern => $result ) {
-            if ( preg_match( $pattern, $url ) ) { //preg_match( '/admin\/(.*?)\/(.*?)\/(.*)/', $url )
+            if ( preg_match( $pattern, $url ) ) {
 				return preg_replace( $pattern, $result, $url ); 
 			}
 	}
@@ -147,7 +147,6 @@ gzipOutput() || ob_start("ob_gzhandler");
 
 
 $cache = new Cache();
-$inflect = new Inflection();
 
 setReporting();
 removeMagicQuotes();

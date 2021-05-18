@@ -20,8 +20,9 @@ class SQLQuery {
     /** Connects to database **/
 	
     function connect($address, $account, $pwd, $name) {
-        $this->_dbHandle = @mysql_connect($address, $account, $pwd);
-        if ($this->_dbHandle != 0) {
+        $this->_dbHandle =  mysqli_connect($address, $account, $pwd);
+		
+        if (!$this->_dbHandle) {
             if (mysql_select_db($name, $this->_dbHandle)) {
                 return 1;
             }
@@ -79,212 +80,56 @@ class SQLQuery {
 		$this->_order = $order;
 	}
 
-	function search() {
-
-		global $inflect;
-
-		$from = '`'.$this->_table.'` as `'.$this->_model.'` ';
-		$conditions = '\'1\'=\'1\' AND ';
-		$conditionsChild = '';
-		$fromChild = '';
-
-		if ($this->_hO == 1 && isset($this->hasOne)) {
-			
-			foreach ($this->hasOne as $alias => $model) {
-				$table = strtolower($inflect->pluralize($model));
-				$singularAlias = strtolower($alias);
-				$from .= 'LEFT JOIN `'.$table.'` as `'.$alias.'` ';
-				$from .= 'ON `'.$this->_model.'`.`'.$singularAlias.'_id` = `'.$alias.'`.`id`  ';
-			}
-		}
-	
-		if ($this->id) {
-			$conditions .= '`'.$this->_model.'`.`id` = \''.mysql_real_escape_string($this->id).'\' AND ';
-		}
-
-		if ($this->_extraConditions) {
-			$conditions .= $this->_extraConditions;
-		}
-
-		$conditions = substr($conditions,0,-4);
-		
-		if (isset($this->_orderBy)) {
-			$conditions .= ' ORDER BY `'.$this->_model.'`.`'.$this->_orderBy.'` '.$this->_order;
-		}
-
-		if (isset($this->_page)) {
-			$offset = ($this->_page-1)*$this->_limit;
-			$conditions .= ' LIMIT '.$this->_limit.' OFFSET '.$offset;
-		}
-		
-		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
-		#echo '<!--'.$this->_query.'-->';
-		$this->_result = mysql_query($this->_query, $this->_dbHandle);
-		$result = array();
-		$table = array();
-		$field = array();
-		$tempResults = array();
-		$numOfFields = mysql_num_fields($this->_result);
-		for ($i = 0; $i < $numOfFields; ++$i) {
-		    array_push($table,mysql_field_table($this->_result, $i));
-		    array_push($field,mysql_field_name($this->_result, $i));
-		}
-		if (mysql_num_rows($this->_result) > 0 ) {
-			while ($row = mysql_fetch_row($this->_result)) {
-				for ($i = 0;$i < $numOfFields; ++$i) {
-					$tempResults[$table[$i]][$field[$i]] = $row[$i];
-				}
-
-				if ($this->_hM == 1 && isset($this->hasMany)) {
-					foreach ($this->hasMany as $aliasChild => $modelChild) {
-						$queryChild = '';
-						$conditionsChild = '';
-						$fromChild = '';
-
-						$tableChild = strtolower($inflect->pluralize($modelChild));
-						$pluralAliasChild = strtolower($inflect->pluralize($aliasChild));
-						$singularAliasChild = strtolower($aliasChild);
-
-						$fromChild .= '`'.$tableChild.'` as `'.$aliasChild.'`';
-						
-						$conditionsChild .= '`'.$aliasChild.'`.`'.strtolower($this->_model).'_id` = \''.$tempResults[$this->_model]['id'].'\'';
-	
-						$queryChild =  'SELECT * FROM '.$fromChild.' WHERE '.$conditionsChild;	
-						#echo '<!--'.$queryChild.'-->';
-						$resultChild = mysql_query($queryChild, $this->_dbHandle);
-				
-						$tableChild = array();
-						$fieldChild = array();
-						$tempResultsChild = array();
-						$resultsChild = array();
-						
-						if (mysql_num_rows($resultChild) > 0) {
-							$numOfFieldsChild = mysql_num_fields($resultChild);
-							for ($j = 0; $j < $numOfFieldsChild; ++$j) {
-								array_push($tableChild,mysql_field_table($resultChild, $j));
-								array_push($fieldChild,mysql_field_name($resultChild, $j));
-							}
-
-							while ($rowChild = mysql_fetch_row($resultChild)) {
-								for ($j = 0;$j < $numOfFieldsChild; ++$j) {
-									$tempResultsChild[$tableChild[$j]][$fieldChild[$j]] = $rowChild[$j];
-								}
-								array_push($resultsChild,$tempResultsChild);
-							}
-						}
-						
-						$tempResults[$aliasChild] = $resultsChild;
-						
-						mysql_free_result($resultChild);
-					}
-				}
-
-
-				if ($this->_hMABTM == 1 && isset($this->hasManyAndBelongsToMany)) {
-					foreach ($this->hasManyAndBelongsToMany as $aliasChild => $tableChild) {
-						$queryChild = '';
-						$conditionsChild = '';
-						$fromChild = '';
-
-						$tableChild = strtolower($inflect->pluralize($tableChild));
-						$pluralAliasChild = strtolower($inflect->pluralize($aliasChild));
-						$singularAliasChild = strtolower($aliasChild);
-
-						$sortTables = array($this->_table,$pluralAliasChild);
-						sort($sortTables);
-						$joinTable = implode('_',$sortTables);
-
-						$fromChild .= '`'.$tableChild.'` as `'.$aliasChild.'`,';
-						$fromChild .= '`'.$joinTable.'`,';
-						
-						$conditionsChild .= '`'.$joinTable.'`.`'.$singularAliasChild.'_id` = `'.$aliasChild.'`.`id` AND ';
-						$conditionsChild .= '`'.$joinTable.'`.`'.strtolower($this->_model).'_id` = \''.$tempResults[$this->_model]['id'].'\'';
-						$fromChild = substr($fromChild,0,-1);
-
-						$queryChild =  'SELECT * FROM '.$fromChild.' WHERE '.$conditionsChild;	
-						#echo '<!--'.$queryChild.'-->';
-						$resultChild = mysql_query($queryChild, $this->_dbHandle);
-				
-						$tableChild = array();
-						$fieldChild = array();
-						$tempResultsChild = array();
-						$resultsChild = array();
-						
-						if (mysql_num_rows($resultChild) > 0) {
-							$numOfFieldsChild = mysql_num_fields($resultChild);
-							for ($j = 0; $j < $numOfFieldsChild; ++$j) {
-								array_push($tableChild,mysql_field_table($resultChild, $j));
-								array_push($fieldChild,mysql_field_name($resultChild, $j));
-							}
-
-							while ($rowChild = mysql_fetch_row($resultChild)) {
-								for ($j = 0;$j < $numOfFieldsChild; ++$j) {
-									$tempResultsChild[$tableChild[$j]][$fieldChild[$j]] = $rowChild[$j];
-								}
-								array_push($resultsChild,$tempResultsChild);
-							}
-						}
-						
-						$tempResults[$aliasChild] = $resultsChild;
-						mysql_free_result($resultChild);
-					}
-				}
-
-				array_push($result,$tempResults);
-			}
-
-			if (mysql_num_rows($this->_result) == 1 && $this->id != null) {
-				mysql_free_result($this->_result);
-				$this->clear();
-				return($result[0]);
-			} else {
-				mysql_free_result($this->_result);
-				$this->clear();
-				return($result);
-			}
-		} else {
-			mysql_free_result($this->_result);
-			$this->clear();
-			return $result;
-		}
-
-	}
-
-    /** Custom SQL Query **/
-
-	function custom($query) {
-
-		global $inflect;
-
-		$this->_result = mysql_query($query, $this->_dbHandle);
-
-		$result = array();
-		$table = array();
-		$field = array();
-		$tempResults = array();
-
-		if(substr_count(strtoupper($query),"SELECT")>0) {
-			if (mysql_num_rows($this->_result) > 0) {
-				$numOfFields = mysql_num_fields($this->_result);
-				for ($i = 0; $i < $numOfFields; ++$i) {
-					array_push($table,mysql_field_table($this->_result, $i));
-					array_push($field,mysql_field_name($this->_result, $i));
-				}
-					while ($row = mysql_fetch_row($this->_result)) {
-						for ($i = 0;$i < $numOfFields; ++$i) {
-							$table[$i] = ucfirst($inflect->singularize($table[$i]));
-							$tempResults[$table[$i]][$field[$i]] = $row[$i];
-						}
-						array_push($result,$tempResults);
-					}
-			}
-			mysql_free_result($this->_result);
-		}	
-		$this->clear();
-		return($result);
-	}
-
     /** Describes a Table **/
+	function selectAll() {
+        $query = 'select * from `' . $this->_table . '`';
+        echo $query;
+        return $this->query($query);
+    }
+
+	/** Custom SQL Query * */
+    function query($query, $singleResult = 0) { // return array
+        //query = select *  from 'items'
+		$sql = "SELECT * FROM artist";
+		if( $this->_result = mysqli_query($this->_dbHandle, "SELECT * FROM `artist`")){
+			echo "done";
+		}
+		else{
+			echo "fail";
+		}
+       
+
+        if (preg_match("/select/i", $query)) {
+            $result = array();
+            $table = array();
+            $field = array();
+            $tempResults = array();
+            $numOfFields = 0;
+
+            while ($fieldinfo = mysqli_fetch_field($this->_result)) { // fetch từng field/column nhận đc
+				
+                array_push($table, $fieldinfo->table);
+                array_push($field, $fieldinfo->name);
+                $numOfFields++;
+            }
+			echo "work";
+            while ($row = mysqli_fetch_row($this->_result)) {
+                for ($i = 0; $i < $numOfFields; ++$i) { 
+                    $table[$i] = trim(ucfirst($table[$i]), "s"); // return Item
+                    $tempResults[$table[$i]][$field[$i]] = $row[$i]; // example : tempResults['Item']['id'] = 1;
+                }
+                if ($singleResult == 1) { // chi muon lay gia tri dau tien tra ve
+                    mysqli_free_result($this->_result);
+                    return $tempResults;
+                }
+                array_push($result, $tempResults); // lay het
+            }
+            mysqli_free_result($this->_result);
+            return($result);
+        }
+    }
+
+
 
 	protected function _describe() {
 		global $cache;

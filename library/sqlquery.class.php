@@ -88,7 +88,6 @@ class SQLQuery {
 
 	function select($id) {
         $query = 'select * from `' . $this->_table . '` where `id` = \'' . mysqli_real_escape_string($this->_dbHandle, $id) . '\'';
-		echo $query;
         return $this->query($query, 1);
     }
 

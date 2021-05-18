@@ -1,3 +1,4 @@
+
 <?php
 
 class ArtistController extends Controller {
@@ -9,5 +10,5 @@ class ArtistController extends Controller {
         $this -> set('artist', $this -> Artist-> select($id));
     }
 
-    
+
 }

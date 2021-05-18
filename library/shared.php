@@ -92,16 +92,16 @@ function callHook() {
 			//in here
 			$action = 'index'; // Default Action  
 		}
-		$queryString = $urlArray; 
+		$queryString = $urlArray;
 	}
 	
 	$controllerName = ucfirst($controller).'Controller'; //IndexController
 
-	$dispatch = new $controllerName($controller,$action); //object:  new IndexController('index', 'index');
+	$dispatch = new $controllerName($controller,$action); //object:  new ArtistController('index', 'index');
 	
 	if ((int)method_exists($controllerName, $action)) {
 		// call_user_func_array(array($dispatch,"beforeAction"),$queryString);
-		call_user_func_array(array($dispatch,$action),$queryString); // dispatch -> index ( dispatch is instance of IndexController)
+		call_user_func_array(array($dispatch,$action),$queryString); // dispatch -> view(queryString)
 		// call_user_func_array(array($dispatch,"afterAction"),$queryString);
 	} else {
 		/* Error Generation Code Here */

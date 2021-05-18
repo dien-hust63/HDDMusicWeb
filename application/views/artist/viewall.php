@@ -1,10 +1,10 @@
 <h1>Vieww all</h1>
 <?php $number = 0?>
 <?php foreach ($artist as $artistitem):?>
-	<a class="big" href="#">
+	<a class="big" href="../artist/viewdetail/<?php echo $artistitem['Artist']['id']?>/<?php echo strtolower(str_replace(" ","-",$artistitem['Artist']['name']))?>">
 	<span class="artist">
 	<?php echo ++$number?>
-	<?php echo $todoitem['Artist']['name']?>
+	<?php echo $artistitem['Artist']['name']?>
 	</span>
 	</a><br/>
 <?php endforeach?>

@@ -20,10 +20,10 @@ class SQLQuery {
     /** Connects to database **/
 	
     function connect($address, $account, $pwd, $name) {
-        $this->_dbHandle =  mysqli_connect($address, $account, $pwd);
+      	$this->_dbHandle =  mysqli_connect($address, $account, $pwd);
 		
-        if (!$this->_dbHandle) {
-            if (mysql_select_db($name, $this->_dbHandle)) {
+        if ($this->_dbHandle) {
+            if (mysqli_select_db($this->_dbHandle, $name)) {
                 return 1;
             }
             else {
@@ -83,22 +83,20 @@ class SQLQuery {
     /** Describes a Table **/
 	function selectAll() {
         $query = 'select * from `' . $this->_table . '`';
-        echo $query;
         return $this->query($query);
+    }
+
+	function select($id) {
+        $query = 'select * from `' . $this->_table . '` where `id` = \'' . mysqli_real_escape_string($this->_dbHandle, $id) . '\'';
+		echo $query;
+        return $this->query($query, 1);
     }
 
 	/** Custom SQL Query * */
     function query($query, $singleResult = 0) { // return array
         //query = select *  from 'items'
-		$sql = "SELECT * FROM artist";
-		if( $this->_result = mysqli_query($this->_dbHandle, "SELECT * FROM `artist`")){
-			echo "done";
-		}
-		else{
-			echo "fail";
-		}
-       
-
+		$this->_result = mysqli_query($this->_dbHandle, $query);
+			
         if (preg_match("/select/i", $query)) {
             $result = array();
             $table = array();
@@ -112,7 +110,6 @@ class SQLQuery {
                 array_push($field, $fieldinfo->name);
                 $numOfFields++;
             }
-			echo "work";
             while ($row = mysqli_fetch_row($this->_result)) {
                 for ($i = 0; $i < $numOfFields; ++$i) { 
                     $table[$i] = trim(ucfirst($table[$i]), "s"); // return Item

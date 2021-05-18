@@ -12,13 +12,16 @@ class Controller {
 	function __construct($controller, $action) { 
 		
 
-		$this->_controller = ucfirst($controller); //Index
-		$this->_action = $action; //index
+		$this->_controller = ucfirst($controller); //Artist
+		$this->_action = $action; //viewall
+		if($this->_controller != "Index"){
+			$model = ucfirst($controller); //Artist
+			$this->$model = new $model;
+		}
 		
-		$model = ucfirst($controller); 
 		$this->doNotRenderHeader = 0;
 		$this->render = 1;
-		$this->$model = new $model;
+		 // new Index 
 		$this->_template = new Template($controller,$action); 
 
 	}

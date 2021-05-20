@@ -92,7 +92,7 @@ function callHook() {
 			//in here
 			$action = 'index'; // Default Action  
 		}
-		$queryString = $urlArray;
+		$queryString = $urlArray; 	
 	}
 	
 	$controllerName = ucfirst($controller).'Controller'; //IndexController

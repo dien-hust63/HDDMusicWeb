@@ -59,10 +59,6 @@ class SQLQuery {
 		$this->_hO = 1;
 	}
 
-	function showHasMany() {
-		$this->_hM = 1;
-	}
-
 	function showHMABTM() {
 		$this->_hMABTM = 1;
 	}
@@ -80,52 +76,110 @@ class SQLQuery {
 		$this->_order = $order;
 	}
 
-    /** Describes a Table **/
-	function selectAll() {
-        $query = 'select * from `' . $this->_table . '`';
-        return $this->query($query);
-    }
-
-	function select($id) {
-        $query = 'select * from `' . $this->_table . '` where `id` = \'' . mysqli_real_escape_string($this->_dbHandle, $id) . '\'';
-        return $this->query($query, 1);
-    }
-
-	/** Custom SQL Query * */
-    function query($query, $singleResult = 0) { // return array
-        //query = select *  from 'items'
-		$this->_result = mysqli_query($this->_dbHandle, $query);
+	//Custom SQL query
+	function query($id = NULL){
+		$from = '`'.$this->_table.'` as `'.$this->_model.'` ';
+		$conditions = '\'1\'=\'1\'';
+		echo $conditions;
+		if ($this->_hO == 1 && isset($this->hasOne)) {
 			
-        if (preg_match("/select/i", $query)) {
-            $result = array();
-            $table = array();
-            $field = array();
-            $tempResults = array();
-            $numOfFields = 0;
-
-            while ($fieldinfo = mysqli_fetch_field($this->_result)) { // fetch từng field/column nhận đc
+			foreach ($this->hasOne as $alias => $model) { //alisa = Artist, model = Artist
+				$table = strtolower($model);
+				$singularAlias = strtolower($alias);
+				$from .= 'LEFT JOIN `'.$table.'` as `'.$alias.'` ';
+				$from .= 'ON `'.$this->_model.'`.`'.$singularAlias.'` = `'.$alias.'`.`id`  ';
+				echo "<br>";
+				echo $from;
+			}
+		}
+		if ($id) { 
+			$conditions .= ' AND '.'`'.$this->_model.'`.`id` = \''.$id.'\'';
+		}
+		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
+		echo "<br>";
+		echo $this ->_query;
+		$this->_result = mysqli_query($this->_dbHandle, $this->_query);
+		$result = array();
+		$table = array();
+		$field = array();
+		$numOfFields=mysqli_num_fields($this -> _result);
+		echo $numOfFields;
+		while ($fieldinfo = mysqli_fetch_field($this->_result)) { 	
+			array_push($table, $fieldinfo->table);
+			array_push($field, $fieldinfo->name);
+		}	
+		if (mysqli_num_rows($this->_result) > 0 ) {
+			while ($row = mysqli_fetch_row($this->_result)) {
+				for ($i = 0; $i < $numOfFields; ++$i) { 
+					$tempResults[$table[$i]][$field[$i]] = $row[$i]; // example : tempResults['Item']['id'] = 1;
+				}
+				if ($this->_hMABTM == 1 && isset($this->hasManyAndBelongsToMany)) {
+					foreach ($this->hasManyAndBelongsToMany as $aliasChild => $tableChild) { // aliasChild = Song, tableChild = Song
+						$queryChild = '';
+						$conditionsChild = '';
+						$fromChild = '';
+						$tableChild = strtolower($tableChild); //song
+						$pluralAliasChild = strtolower($aliasChild);//song
+						$singularAliasChild = strtolower($aliasChild); //song
+						$sortTables = array($pluralAliasChild,$this->_table); //array("song" => "artist")
+						sort($sortTables); //ne thuc su -> artist => song
+						$joinTable = implode('_',$sortTables);
+						echo $joinTable;
+						$fromChild .= '`'.$tableChild.'` as `'.$aliasChild.'`,';
+						$fromChild .= '`'.$joinTable.'`,';
+						echo "<br>";
+						echo $fromChild;
+						$conditionsChild .= '`'.$joinTable.'`.`'.$singularAliasChild.'` = `'.$aliasChild.'`.`id` AND ';
+						$conditionsChild .= '`'.$joinTable.'`.`'.strtolower($this->_model).'` = \''.$tempResults[$this->_model]['id'].'\'';
+						echo "<br>";
+						echo $conditionsChild;
+						$fromChild = substr($fromChild,0,-1);
+						echo "<br>";
+						echo $fromChild;
+						$queryChild =  'SELECT * FROM '.$fromChild.' WHERE '.$conditionsChild;
+						echo "<br>";
+						echo $queryChild;
+						$resultChild = mysqli_query($this->_dbHandle, $queryChild);
+	
+						$tableChild = array();
+						$fieldChild = array();
+						$tempResultsChild = array();
+						$resultsChild = array();
+						if(mysqli_num_rows($resultChild) > 0){
+							echo "alo";
+							while ($fieldinfo = mysqli_fetch_field($resultChild)) { 	
+								array_push($tableChild, $fieldinfo->table); // Song, artist_song
+								array_push($fieldChild, $fieldinfo->name); 
+							}
+							echo sizeof($tableChild);
+							foreach($tableChild as $key => $value)	{
+								echo $key." ".$value."<br>";
+							}
+							while ($rowChild = mysqli_fetch_row($resultChild)) {//rowChild là 1 mảng chứa các value
+								for ($i = 0; $i < $numOfFields; ++$i) { 
+									$tempResultsChild[$tableChild[$i]][$fieldChild[$i]] = $rowChild[$i];  // [song][field] = value
+									//tempResultChild là mảng 2 chiều: ("table" => array("field" => value))
+								}
+								array_push($resultsChild,$tempResultsChild); 	
+							}
+						
+						}
+						$tempResults[$aliasChild] = $resultsChild; // mảng 3 chiều // "Song" => resultsChild
+						mysqli_free_result($resultChild);
+					}
+				}
+				array_push($result, $tempResults);//trong result có các key là Song và Artist
+			}
 				
-                array_push($table, $fieldinfo->table);
-                array_push($field, $fieldinfo->name);
-                $numOfFields++;
-            }
-            while ($row = mysqli_fetch_row($this->_result)) {
-                for ($i = 0; $i < $numOfFields; ++$i) { 
-                    $table[$i] = trim(ucfirst($table[$i]), "s"); // return Item
-                    $tempResults[$table[$i]][$field[$i]] = $row[$i]; // example : tempResults['Item']['id'] = 1;
-                }
-                if ($singleResult == 1) { // chi muon lay gia tri dau tien tra ve
-                    mysqli_free_result($this->_result);
-                    return $tempResults;
-                }
-                array_push($result, $tempResults); // lay het
-            }
-            mysqli_free_result($this->_result);
-            return($result);
-        }
-    }
+			if (mysqli_num_rows($this->_result) == 1 && $id != null) { 
+				mysqli_free_result($this->_result);
+				return $result[0];
+			}
+		}	
+		mysqli_free_result($this->_result);
+		return($result);
 
-
+	}
 
 	protected function _describe() {
 		global $cache;

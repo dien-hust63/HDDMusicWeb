@@ -18,7 +18,6 @@ class Controller {
 			$this->$model = new $model;
 			
 		}
-		
 		$this->doNotRenderHeader = 0;
 		$this->render = 1;
 		 // new Index 

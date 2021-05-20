@@ -5,9 +5,7 @@ class ArtistController extends Controller {
     function viewall(){
         $this -> Artist -> showHasOne();
         $artist = $this -> Artist -> query();
-        //expect artist return array;
         $this -> set('artist', $artist);
-        // $this -> set('artist', $this -> Artist-> selectAll());
     }
 
     function viewdetail($id = null){

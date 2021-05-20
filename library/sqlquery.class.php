@@ -75,7 +75,6 @@ class SQLQuery {
 		$this->_orderBy = $orderBy;
 		$this->_order = $order;
 	}
-
 	//Custom SQL query
 	function query($id = NULL){
 		$from = '`'.$this->_table.'` as `'.$this->_model.'` ';
@@ -83,7 +82,7 @@ class SQLQuery {
 		echo $conditions;
 		if ($this->_hO == 1 && isset($this->hasOne)) {
 			
-			foreach ($this->hasOne as $alias => $model) { //alisa = Artist, model = Artist
+			foreach ($this->hasOne as $alias => $model) { //alisa = Country, model = Country
 				$table = strtolower($model);
 				$singularAlias = strtolower($alias);
 				$from .= 'LEFT JOIN `'.$table.'` as `'.$alias.'` ';
@@ -173,36 +172,26 @@ class SQLQuery {
 				
 			if (mysqli_num_rows($this->_result) == 1 && $id != null) { 
 				mysqli_free_result($this->_result);
+				$this->clear();
 				return $result[0];
 			}
 		}	
 		mysqli_free_result($this->_result);
+		$this->clear();
 		return($result);
 
 	}
 
-	protected function _describe() {
-		global $cache;
-
-		$this->_describe = $cache->get('describe'.$this->_table);
-
-		if (!$this->_describe) {
-			$this->_describe = array();
-			$query = 'DESCRIBE '.$this->_table;
-			$this->_result = mysql_query($query, $this->_dbHandle);
-			while ($row = mysql_fetch_row($this->_result)) {
-				 array_push($this->_describe,$row[0]);
-			}
-
-			mysql_free_result($this->_result);
-			$cache->set('describe'.$this->_table,$this->_describe);
+	function customQuery($query){
+		$message = "";
+		if (mysqli_query($this->_dbHandle, $query)) {
+			$message = "Successfully .";
 		}
-
-		foreach ($this->_describe as $field) {
-			$this->$field = null;
+		else {
+			$message = "Error";
 		}
+		return $message;
 	}
-
     /** Delete an Object **/
 
 	function delete() {

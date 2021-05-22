@@ -3,20 +3,19 @@
 
 class CountryController extends Controller {
     function add(){
-        try {
+        if(isset($_POST['country'])){
             $country_name = $_POST['country'];
-        
+            echo "test";
             $query = "INSERT INTO `country`(`name`) VALUES ('$country_name');";
-            $country = $this->Country->query();
-            $this -> set('country', $country);
+            $this -> Country -> customQuery($query) ;
         }
-          //catch exception
-        catch(Exception $e) {
-            $country = $this->Country->query();
-            $this -> set('country', $country);
-        }
-        
-    
+        $country = $this->Country->query();
+        $this -> set('country', $country);     
+    }
+
+    function delete($id){
+        $query = "DELETE FROM `country` WHERE 'country'.'id' = $id";
+        $this -> Country -> customQuery($query);
     }
         
 

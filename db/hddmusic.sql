@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 17, 2021 lúc 05:54 PM
+-- Thời gian đã tạo: Th5 22, 2021 lúc 02:01 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.11
 
@@ -41,7 +41,27 @@ CREATE TABLE `artist` (
 --
 
 INSERT INTO `artist` (`id`, `name`, `age`, `hometown`, `country`, `avatar`) VALUES
-(2, 'Son Tung', 26, 'Thai Binh', 1, '');
+(2, 'Son Tung', 26, 'Thai Binh', 1, ''),
+(4, 'Hoàng Dũng', 25, 'Thái Nguyên', 1, '');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `artist_song`
+--
+
+CREATE TABLE `artist_song` (
+  `id` int(11) NOT NULL,
+  `artist` int(11) DEFAULT NULL,
+  `song` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `artist_song`
+--
+
+INSERT INTO `artist_song` (`id`, `artist`, `song`) VALUES
+(1, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -59,9 +79,21 @@ CREATE TABLE `country` (
 --
 
 INSERT INTO `country` (`id`, `name`) VALUES
-(1, 'Viet Nam'),
+(17, ''),
+(28, 'America'),
+(15, 'Brunei'),
+(3, 'China'),
+(42, 'dfs'),
+(45, 'England'),
+(33, 'fads'),
+(13, 'Indonexia'),
+(5, 'Japan'),
+(4, 'Korea'),
+(12, 'Lao'),
+(20, 'Singapore'),
 (2, 'Thailand'),
-(3, 'China');
+(1, 'Viet Nam'),
+(11, 'VietNam');
 
 -- --------------------------------------------------------
 
@@ -73,6 +105,17 @@ CREATE TABLE `genre` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `genre`
+--
+
+INSERT INTO `genre` (`id`, `name`) VALUES
+(1, 'pop'),
+(2, 'rap'),
+(3, 'country'),
+(4, 'rock'),
+(5, 'jazz');
 
 -- --------------------------------------------------------
 
@@ -86,6 +129,32 @@ CREATE TABLE `playlist` (
   `user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `playlist`
+--
+
+INSERT INTO `playlist` (`id`, `name`, `user`) VALUES
+(1, 'myplaylist1', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `playlist_song`
+--
+
+CREATE TABLE `playlist_song` (
+  `id` int(11) NOT NULL,
+  `playlist` int(11) NOT NULL,
+  `song` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `playlist_song`
+--
+
+INSERT INTO `playlist_song` (`id`, `playlist`, `song`) VALUES
+(1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -96,6 +165,14 @@ CREATE TABLE `role` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `role`
+--
+
+INSERT INTO `role` (`id`, `name`) VALUES
+(1, 'admin'),
+(2, 'user');
 
 -- --------------------------------------------------------
 
@@ -111,21 +188,15 @@ CREATE TABLE `song` (
   `country` int(11) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
   `summary` text DEFAULT NULL,
-  `playlist` int(11) DEFAULT NULL,
-  `image` varchar(255) NOT NULL
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Cấu trúc bảng cho bảng `song_artist`
+-- Đang đổ dữ liệu cho bảng `song`
 --
 
-CREATE TABLE `song_artist` (
-  `id` int(11) NOT NULL,
-  `artist` int(11) DEFAULT NULL,
-  `song` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `song` (`id`, `name`, `lyrics`, `genre`, `country`, `link`, `summary`, `image`) VALUES
+(1, 'Nàng thơ', NULL, 1, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -142,6 +213,14 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Đang đổ dữ liệu cho bảng `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `avatar`, `role`) VALUES
+(1, 'admin1', '12345', NULL, 1),
+(3, 'user1', '12345', NULL, 2);
+
+--
 -- Chỉ mục cho các bảng đã đổ
 --
 
@@ -153,10 +232,19 @@ ALTER TABLE `artist`
   ADD KEY `FK_artist_country` (`country`);
 
 --
+-- Chỉ mục cho bảng `artist_song`
+--
+ALTER TABLE `artist_song`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `artist` (`artist`),
+  ADD KEY `song` (`song`);
+
+--
 -- Chỉ mục cho bảng `country`
 --
 ALTER TABLE `country`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Chỉ mục cho bảng `genre`
@@ -172,6 +260,14 @@ ALTER TABLE `playlist`
   ADD KEY `FK_playlist_user` (`user`);
 
 --
+-- Chỉ mục cho bảng `playlist_song`
+--
+ALTER TABLE `playlist_song`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_song_playlist_1` (`playlist`),
+  ADD KEY `FK_song_playlist_2` (`song`);
+
+--
 -- Chỉ mục cho bảng `role`
 --
 ALTER TABLE `role`
@@ -183,16 +279,7 @@ ALTER TABLE `role`
 ALTER TABLE `song`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_song_genre` (`genre`),
-  ADD KEY `FK_song_country` (`country`),
-  ADD KEY `FK_song_playlist` (`playlist`);
-
---
--- Chỉ mục cho bảng `song_artist`
---
-ALTER TABLE `song_artist`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `artist` (`artist`),
-  ADD KEY `song` (`song`);
+  ADD KEY `FK_song_country` (`country`);
 
 --
 -- Chỉ mục cho bảng `user`
@@ -209,49 +296,55 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `artist`
 --
 ALTER TABLE `artist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `artist_song`
+--
+ALTER TABLE `artist_song`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `country`
 --
 ALTER TABLE `country`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT cho bảng `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `playlist`
 --
 ALTER TABLE `playlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `playlist_song`
+--
+ALTER TABLE `playlist_song`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `song`
 --
 ALTER TABLE `song`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `song_artist`
---
-ALTER TABLE `song_artist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -264,25 +357,31 @@ ALTER TABLE `artist`
   ADD CONSTRAINT `FK_artist_country` FOREIGN KEY (`country`) REFERENCES `country` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
+-- Các ràng buộc cho bảng `artist_song`
+--
+ALTER TABLE `artist_song`
+  ADD CONSTRAINT `FK1` FOREIGN KEY (`artist`) REFERENCES `artist` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `FK2` FOREIGN KEY (`song`) REFERENCES `song` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+
+--
 -- Các ràng buộc cho bảng `playlist`
 --
 ALTER TABLE `playlist`
   ADD CONSTRAINT `FK_playlist_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Các ràng buộc cho bảng `playlist_song`
+--
+ALTER TABLE `playlist_song`
+  ADD CONSTRAINT `FK_song_playlist_1` FOREIGN KEY (`playlist`) REFERENCES `playlist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_song_playlist_2` FOREIGN KEY (`song`) REFERENCES `song` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Các ràng buộc cho bảng `song`
 --
 ALTER TABLE `song`
   ADD CONSTRAINT `FK_song_country` FOREIGN KEY (`country`) REFERENCES `country` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-  ADD CONSTRAINT `FK_song_genre` FOREIGN KEY (`genre`) REFERENCES `genre` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-  ADD CONSTRAINT `FK_song_playlist` FOREIGN KEY (`playlist`) REFERENCES `playlist` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
-
---
--- Các ràng buộc cho bảng `song_artist`
---
-ALTER TABLE `song_artist`
-  ADD CONSTRAINT `FK1` FOREIGN KEY (`artist`) REFERENCES `artist` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-  ADD CONSTRAINT `FK2` FOREIGN KEY (`song`) REFERENCES `song` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `FK_song_genre` FOREIGN KEY (`genre`) REFERENCES `genre` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Các ràng buộc cho bảng `user`

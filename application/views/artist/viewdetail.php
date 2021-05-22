@@ -8,7 +8,7 @@
     if(!empty($artist['Song'])){
        foreach($artist['Song'] as $element){
            $count ++;
-           echo "<div>".$count.".".$element['Song']['name']."</div>";
+           echo "<div >".$count.".".$element['Song']['name']."</div>";
        }
     }
     else{

@@ -15,7 +15,7 @@ if (isset($login)) {
 ?>
 
 <!-- login form box -->
-<form method="post" action="index.php" name="loginform">
+<form method="post" action="signin" name="loginform">
 
     <label for="login_input_username">Username</label>
     <input id="login_input_username" class="login_input" type="text" name="user_name" required />
@@ -27,4 +27,4 @@ if (isset($login)) {
 
 </form>
 
-<a href="register.php">Register new account</a>
+<button><a href="../register/signup">Register new account</a></button>

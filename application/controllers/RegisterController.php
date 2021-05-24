@@ -2,6 +2,7 @@
 
 class RegisterController extends Controller {
     function signup() {
-        $this -> set('register', 'signup');
+        $register = $this -> Register;
+        $this -> set('register', $register);
     }
 }

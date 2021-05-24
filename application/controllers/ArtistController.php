@@ -14,6 +14,4 @@ class ArtistController extends Controller {
         $artist = $this -> Artist -> query($id);
         $this -> set('artist', $artist);
     }
-
-
 }

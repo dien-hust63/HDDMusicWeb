@@ -16,7 +16,6 @@ class Controller {
 		if($this->_controller != "Index"){
 			$model = ucfirst($controller); //Artist
 			$this->$model = new $model;
-			
 		}
 		$this->doNotRenderHeader = 0;
 		$this->render = 1;

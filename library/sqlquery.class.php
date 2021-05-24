@@ -57,6 +57,7 @@ class SQLQuery {
 
 	function showHasOne() {
 		$this->_hO = 1;
+		echo "testfadf";
 	}
 
 	function showHMABTM() {
@@ -91,7 +92,7 @@ class SQLQuery {
 				echo $from;
 			}
 		}
-		if ($id) { 
+		if ($id) {
 			$conditions .= ' AND '.'`'.$this->_model.'`.`id` = \''.$id.'\'';
 		}
 		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
@@ -130,8 +131,6 @@ class SQLQuery {
 						echo $fromChild;
 						$conditionsChild .= '`'.$joinTable.'`.`'.$singularAliasChild.'` = `'.$aliasChild.'`.`id` AND ';
 						$conditionsChild .= '`'.$joinTable.'`.`'.strtolower($this->_model).'` = \''.$tempResults[$this->_model]['id'].'\'';
-						echo "<br>";
-						echo $conditionsChild;
 						$fromChild = substr($fromChild,0,-1);
 						echo "<br>";
 						echo $fromChild;
@@ -145,15 +144,17 @@ class SQLQuery {
 						$tempResultsChild = array();
 						$resultsChild = array();
 						if(mysqli_num_rows($resultChild) > 0){
-							echo "alo";
 							while ($fieldinfo = mysqli_fetch_field($resultChild)) { 	
 								array_push($tableChild, $fieldinfo->table); // Song, artist_song
 								array_push($fieldChild, $fieldinfo->name); 
 							}
+							echo "<br>";
 							echo sizeof($tableChild);
+							echo "<br>";
 							foreach($tableChild as $key => $value)	{
 								echo $key." ".$value."<br>";
 							}
+							$numOfFields = mysqli_num_fields($resultChild);
 							while ($rowChild = mysqli_fetch_row($resultChild)) {//rowChild là 1 mảng chứa các value
 								for ($i = 0; $i < $numOfFields; ++$i) { 
 									$tempResultsChild[$tableChild[$i]][$fieldChild[$i]] = $rowChild[$i];  // [song][field] = value

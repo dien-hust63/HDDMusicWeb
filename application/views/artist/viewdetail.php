@@ -15,3 +15,6 @@
         echo "Have no songs in database";
     }
 ?>
+<form action=<?php echo PATH_ARTIST_VIEWALL?>  method="post">
+<input type="submit" value="Back to Artist"></form>
+<?php include(HOME_PAGE);?>

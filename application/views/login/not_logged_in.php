@@ -15,7 +15,7 @@ if (isset($login)) {
 ?>
 
 <!-- login form box -->
-<form method="post" action="signin" name="loginform">
+<form method="post" action="../index" name="loginform">
 
     <label for="login_input_username">Username</label>
     <input id="login_input_username" class="login_input" type="text" name="user_name" required />

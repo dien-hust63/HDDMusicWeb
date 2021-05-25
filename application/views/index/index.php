@@ -8,11 +8,14 @@ if (isset($_SESSION['user_login_status']) || isset($_SESSION['admin_login_status
 	} else if ($_SESSION['admin_login_status'] == 1) {
 		echo "<br/> Hey admin ". $_SESSION['admin_name'] . ". You are logged in.
 		Try to close this browser tab and open it again. Still logged in!";
-		?><form action="login/signin" method="post" >
-		<input type="submit" value="Log out" name="logout"></form><?php
+		include(LOG_OUT);
 	}
 } else {
-	?><form action="login/signin" method="post">
+	echo PATH_LOG;
+	?>
+	<form action="http://localhost/HDDMusicWeb\login\signin" method="post">
+	<input type="submit" value="Log in"></form>
+	<form action="login/signin" method="post">
 	<input type="submit" value="Log in"></form><?php
 }
 ?>

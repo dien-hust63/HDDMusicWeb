@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 24, 2021 at 06:16 PM
--- Server version: 8.0.24
--- PHP Version: 8.0.2
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 26, 2021 lúc 10:57 AM
+-- Phiên bản máy phục vụ: 10.4.14-MariaDB
+-- Phiên bản PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,24 +18,24 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hddmusic`
+-- Cơ sở dữ liệu: `hddmusic`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Cấu trúc bảng cho bảng `admin`
 --
 
 CREATE TABLE `admin` (
-  `admin_id` int NOT NULL COMMENT 'auto incrementing user_id of each user, unique index',
-  `admin_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'user''s name, unique',
-  `admin_password_hash` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'user''s password in salted and hashed format',
-  `admin_email` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'user''s email, unique'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci COMMENT='admin data';
+  `admin_id` int(11) NOT NULL,
+  `admin_name` varchar(64) NOT NULL,
+  `admin_password_hash` varchar(255) NOT NULL,
+  `admin_email` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `admin`
+-- Đang đổ dữ liệu cho bảng `admin`
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_password_hash`, `admin_email`) VALUES
@@ -44,58 +44,63 @@ INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_password_hash`, `admin_ema
 -- --------------------------------------------------------
 
 --
--- Table structure for table `artist`
+-- Cấu trúc bảng cho bảng `artist`
 --
 
 CREATE TABLE `artist` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `age` int DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
   `hometown` varchar(255) DEFAULT NULL,
-  `country` int DEFAULT NULL,
+  `country` int(11) DEFAULT NULL,
   `avatar` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `artist`
+-- Đang đổ dữ liệu cho bảng `artist`
 --
 
 INSERT INTO `artist` (`id`, `name`, `age`, `hometown`, `country`, `avatar`) VALUES
-(2, 'Son Tung', 26, 'Thai Binh', 1, ''),
-(4, 'Hoàng Dũng', 25, 'Thái Nguyên', 1, '');
+(2, 'Sơn Tùng MTP', 26, 'Thai Binh', 1, 'sontung.jpg'),
+(4, 'Hoàng Dũng', 25, 'Thái Nguyên', 1, 'hoangdung.png'),
+(5, 'Đen Vâu', 32, 'Quảng Ninh', 1, 'denvau.jpg'),
+(6, 'Chillies', 32, 'Quảng Ninh', 1, 'chillies.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `artist_song`
+-- Cấu trúc bảng cho bảng `artist_song`
 --
 
 CREATE TABLE `artist_song` (
-  `id` int NOT NULL,
-  `artist` int DEFAULT NULL,
-  `song` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(11) NOT NULL,
+  `artist` int(11) DEFAULT NULL,
+  `song` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `artist_song`
+-- Đang đổ dữ liệu cho bảng `artist_song`
 --
 
 INSERT INTO `artist_song` (`id`, `artist`, `song`) VALUES
-(1, 4, 1);
+(1, 4, 1),
+(2, 2, 5),
+(4, 5, 3),
+(5, 6, 11);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `country`
+-- Cấu trúc bảng cho bảng `country`
 --
 
 CREATE TABLE `country` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `country`
+-- Đang đổ dữ liệu cho bảng `country`
 --
 
 INSERT INTO `country` (`id`, `name`) VALUES
@@ -106,28 +111,28 @@ INSERT INTO `country` (`id`, `name`) VALUES
 (42, 'dfs'),
 (45, 'England'),
 (33, 'fads'),
+(47, 'France'),
 (13, 'Indonexia'),
 (5, 'Japan'),
 (4, 'Korea'),
 (12, 'Lao'),
 (20, 'Singapore'),
 (2, 'Thailand'),
-(1, 'Viet Nam'),
-(11, 'VietNam');
+(1, 'Viet Nam');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genre`
+-- Cấu trúc bảng cho bảng `genre`
 --
 
 CREATE TABLE `genre` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `genre`
+-- Đang đổ dữ liệu cho bảng `genre`
 --
 
 INSERT INTO `genre` (`id`, `name`) VALUES
@@ -140,148 +145,96 @@ INSERT INTO `genre` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `playlist`
+-- Cấu trúc bảng cho bảng `playlist`
 --
 
 CREATE TABLE `playlist` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `user` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `playlist`
---
-
-INSERT INTO `playlist` (`id`, `name`, `user`) VALUES
-(1, 'myplaylist1', 3);
+  `user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `playlist_song`
+-- Cấu trúc bảng cho bảng `playlist_song`
 --
 
 CREATE TABLE `playlist_song` (
-  `id` int NOT NULL,
-  `playlist` int NOT NULL,
-  `song` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `playlist_song`
---
-
-INSERT INTO `playlist_song` (`id`, `playlist`, `song`) VALUES
-(1, 1, 1);
+  `id` int(11) NOT NULL,
+  `playlist` int(11) NOT NULL,
+  `song` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
---
-
-CREATE TABLE `role` (
-  `id` int NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `role`
---
-
-INSERT INTO `role` (`id`, `name`) VALUES
-(1, 'admin'),
-(2, 'user');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `song`
+-- Cấu trúc bảng cho bảng `song`
 --
 
 CREATE TABLE `song` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `lyrics` text,
-  `genre` int DEFAULT NULL,
-  `country` int DEFAULT NULL,
+  `lyrics` text DEFAULT NULL,
+  `genre` int(11) DEFAULT NULL,
+  `country` int(11) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
-  `summary` text,
+  `summary` text DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `song`
+-- Đang đổ dữ liệu cho bảng `song`
 --
 
 INSERT INTO `song` (`id`, `name`, `lyrics`, `genre`, `country`, `link`, `summary`, `image`) VALUES
-(1, 'Nàng thơ', NULL, 1, 1, NULL, NULL, NULL);
+(1, 'Nàng thơ', NULL, 1, 1, 'nangtho.mp3', NULL, 'nangtho.jpg'),
+(3, 'Hai Triệu Năm', NULL, 2, 1, 'haitrieunam.mp3', NULL, 'haitrieunam.png'),
+(5, 'Nắng ấm xa dần', NULL, 1, 1, 'nangamxadan.mp3', NULL, 'nangamxadan.jpeg'),
+(11, 'Vùng kí ức', NULL, 1, 1, 'vungkyuc.mp3', NULL, 'vungkyuc.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `id` int NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `avatar` varchar(255) DEFAULT NULL,
-  `role` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `username`, `password`, `avatar`, `role`) VALUES
-(1, 'admin1', '12345', NULL, 1),
-(3, 'user1', '12345', NULL, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
-  `user_id` int NOT NULL COMMENT 'auto incrementing user_id of each user, unique index',
-  `user_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'user''s name, unique',
-  `user_password_hash` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'user''s password in salted and hashed format',
-  `user_email` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'user''s email, unique'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci COMMENT='user data';
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(64) NOT NULL,
+  `user_password_hash` varchar(255) NOT NULL,
+  `user_email` varchar(64) NOT NULL,
+  `user_image` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_password_hash`, `user_email`) VALUES
-(7, 'nguyenvandien', '$2y$10$wCcTckBvmC3I6.TVOjNblOvl9Xc5p64nXfkkoSG7r2G9RRWXoDYjG', 'nguyenvandien2000@gmail.com'),
-(8, 'tranduchuy', '$2y$10$HRmWhNaL0JJ.0t0aK7Ekje5GiAQ64q6xaSkQ8Z2zXMcrj5DXMICy.', 'tranduchuy2000@gmail.com');
+INSERT INTO `users` (`user_id`, `user_name`, `user_password_hash`, `user_email`, `user_image`) VALUES
+(7, 'nguyenvandien', '$2y$10$wCcTckBvmC3I6.TVOjNblOvl9Xc5p64nXfkkoSG7r2G9RRWXoDYjG', 'nguyenvandien2000@gmail.com', NULL),
+(8, 'tranduchuy', '$2y$10$HRmWhNaL0JJ.0t0aK7Ekje5GiAQ64q6xaSkQ8Z2zXMcrj5DXMICy.', 'tranduchuy2000@gmail.com', NULL);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `admin`
+-- Chỉ mục cho bảng `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`),
-  ADD UNIQUE KEY `admin_name` (`admin_name`),
-  ADD UNIQUE KEY `admin_email` (`admin_email`);
+  ADD UNIQUE KEY `admin_name` (`admin_name`);
 
 --
--- Indexes for table `artist`
+-- Chỉ mục cho bảng `artist`
 --
 ALTER TABLE `artist`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_artist_country` (`country`);
 
 --
--- Indexes for table `artist_song`
+-- Chỉ mục cho bảng `artist_song`
 --
 ALTER TABLE `artist_song`
   ADD PRIMARY KEY (`id`),
@@ -289,27 +242,27 @@ ALTER TABLE `artist_song`
   ADD KEY `song` (`song`);
 
 --
--- Indexes for table `country`
+-- Chỉ mục cho bảng `country`
 --
 ALTER TABLE `country`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indexes for table `genre`
+-- Chỉ mục cho bảng `genre`
 --
 ALTER TABLE `genre`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `playlist`
+-- Chỉ mục cho bảng `playlist`
 --
 ALTER TABLE `playlist`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_playlist_user` (`user`);
+  ADD KEY `FK_playlist_user_2` (`user`);
 
 --
--- Indexes for table `playlist_song`
+-- Chỉ mục cho bảng `playlist_song`
 --
 ALTER TABLE `playlist_song`
   ADD PRIMARY KEY (`id`),
@@ -317,13 +270,7 @@ ALTER TABLE `playlist_song`
   ADD KEY `FK_song_playlist_2` (`song`);
 
 --
--- Indexes for table `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `song`
+-- Chỉ mục cho bảng `song`
 --
 ALTER TABLE `song`
   ADD PRIMARY KEY (`id`),
@@ -331,132 +278,106 @@ ALTER TABLE `song`
   ADD KEY `FK_song_country` (`country`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_user_role` (`role`);
-
---
--- Indexes for table `users`
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `user_name` (`user_name`),
-  ADD UNIQUE KEY `user_email` (`user_email`);
+  ADD UNIQUE KEY `user_name` (`user_name`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT cho bảng `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing user_id of each user, unique index', AUTO_INCREMENT=5;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `artist`
+-- AUTO_INCREMENT cho bảng `artist`
 --
 ALTER TABLE `artist`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `artist_song`
+-- AUTO_INCREMENT cho bảng `artist_song`
 --
 ALTER TABLE `artist_song`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `country`
+-- AUTO_INCREMENT cho bảng `country`
 --
 ALTER TABLE `country`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT for table `genre`
+-- AUTO_INCREMENT cho bảng `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `playlist`
+-- AUTO_INCREMENT cho bảng `playlist`
 --
 ALTER TABLE `playlist`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `playlist_song`
+-- AUTO_INCREMENT cho bảng `playlist_song`
 --
 ALTER TABLE `playlist_song`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `role`
---
-ALTER TABLE `role`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `song`
+-- AUTO_INCREMENT cho bảng `song`
 --
 ALTER TABLE `song`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing user_id of each user, unique index', AUTO_INCREMENT=11;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `artist`
+-- Các ràng buộc cho bảng `artist`
 --
 ALTER TABLE `artist`
   ADD CONSTRAINT `FK_artist_country` FOREIGN KEY (`country`) REFERENCES `country` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Constraints for table `artist_song`
+-- Các ràng buộc cho bảng `artist_song`
 --
 ALTER TABLE `artist_song`
   ADD CONSTRAINT `FK1` FOREIGN KEY (`artist`) REFERENCES `artist` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `FK2` FOREIGN KEY (`song`) REFERENCES `song` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Constraints for table `playlist`
+-- Các ràng buộc cho bảng `playlist`
 --
 ALTER TABLE `playlist`
-  ADD CONSTRAINT `FK_playlist_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_playlist_user_2` FOREIGN KEY (`user`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `playlist_song`
+-- Các ràng buộc cho bảng `playlist_song`
 --
 ALTER TABLE `playlist_song`
   ADD CONSTRAINT `FK_song_playlist_1` FOREIGN KEY (`playlist`) REFERENCES `playlist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_song_playlist_2` FOREIGN KEY (`song`) REFERENCES `song` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `song`
+-- Các ràng buộc cho bảng `song`
 --
 ALTER TABLE `song`
   ADD CONSTRAINT `FK_song_country` FOREIGN KEY (`country`) REFERENCES `country` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `FK_song_genre` FOREIGN KEY (`genre`) REFERENCES `genre` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
-
---
--- Constraints for table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `FK_user_role` FOREIGN KEY (`role`) REFERENCES `role` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -17,12 +17,12 @@ if (isset($login)) {
 <form method="post" action="../index" name="loginform" class="login-form">
     <h1>Sign In</h1>
     <div class="textb">
-        <input id="login_input_username" type="text" required>
+        <input id="login_input_username" name="user_name" type="text" required>
         <div class="placeholder">Username</div>
     </div>
 
     <div class="textb">
-        <input id="" type="password" required>
+        <input id="login_input_password" name="user_password" type="password" required>
         <div class="placeholder">Password</div>
     </div>
     <a class="register-suggest" href=<?php echo PATH_REG?> >Don't have an account? Register now.</a>

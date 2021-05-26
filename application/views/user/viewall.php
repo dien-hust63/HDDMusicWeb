@@ -4,13 +4,13 @@ $number = 0;
 
 ?>
 <?php foreach ($user as $useritem):?>
-	<?php $path = BASE_PATH."/users/viewdetail/".$useritem['Users']['user_id']."/".strtolower(str_replace(" ","-",$useritem['Users']['user_name'])); ?>
+	<?php $path = BASE_PATH."/users/viewdetail/".$useritem['User']['user_id']."/".strtolower(str_replace(" ","-",$useritem['User']['user_name'])); ?>
 	<a class="big" href="<?php echo  $path?>">
 	<span class="user">
 	<?php echo ++$number?>
-	<?php echo $useritem['Users']['user_name']?>
+	<?php echo $useritem['User']['user_name']?>
 	</span>
 	</a>
-	<button><a href= <?php echo BASE_PATH . "/users/delete/" . $useritem['Users']['user_id']. "/"?>>Delete</a></button><br/>
+	<button><a href= <?php echo BASE_PATH . "/user/delete/" . $useritem['User']['user_id']. "/"?>>Delete</a></button><br/>
 <?php endforeach?>
 <?php require_once(HOME_PAGE)?>

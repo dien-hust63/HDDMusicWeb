@@ -6,7 +6,7 @@ class UserController extends Controller {
         $this -> set('user', $user);
     }
     function delete($id = null){
-        $user= $this -> User ->delete($id);
+        $user= $this -> User ->deleteUser($id);
         $this -> set('user', $user);
     }
 }

@@ -194,7 +194,24 @@ class SQLQuery {
 		}
 		
 	}
-
+	function deleteUser($id=null) {
+		if ($id) {
+			$query = 'DELETE FROM '.$this->_table.' WHERE `user_id`=\''. $id .'\'';		
+			$this->_result = mysqli_query($this->_dbHandle, $query);
+			$this->clear();
+			if ($this->_result) {
+				return $this->query();
+			}
+			else if ($this->_result == 0) {
+			    /** Error Generation **/
+				return -1;
+		   }
+		} else {
+			/** Error Generation **/
+			return -1;
+		}
+		
+	}
     /** Saves an Object i.e. Updates/Inserts Query **/
 
 	function save() {

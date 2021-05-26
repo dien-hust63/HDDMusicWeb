@@ -11,6 +11,6 @@ $number = 0;
 	<?php echo $artistitem['Artist']['name']?>
 	</span>
 	</a>
-	<button><a href= <?php echo BASE_PATH . "/artist/delete/" . $songitem['Artist']['id']. "/"?>>Delete</a></button><br/>		
+	<button><a href= <?php echo BASE_PATH . "/artist/delete/" . $artistitem['Artist']['id']. "/"?>>Delete</a></button><br/>		
 <?php endforeach?>
 <?php include(HOME_PAGE)?>

@@ -123,10 +123,14 @@ body {
 }
 
 .artist {
-    height: 7rem;
+    height: 10rem;
     width: 100%;
+}
+
+.artist > .bg {
     background-position: center;
     background-size: cover;
+    height: 70%;
 }
 
 .artist-list>a {
@@ -135,4 +139,9 @@ body {
     margin-bottom: auto;
     text-decoration: none;
     margin-top: 1rem;
+}
+
+.artist > .artist-name {
+    text-decoration: none;
+    color: #D52020;
 }

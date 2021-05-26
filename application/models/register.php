@@ -83,7 +83,7 @@ class Register extends Model {
                 $user_password_hash = password_hash($user_password, PASSWORD_DEFAULT);
 
                 // check if user or email address already exists
-                $sql = "SELECT * FROM users WHERE user_name = '" . $user_name . "' OR user_email = '" . $user_email . "';";
+                $sql = "SELECT * FROM user WHERE user_name = '" . $user_name . "' OR user_email = '" . $user_email . "';";
                 $query_check_user_name = $this->db_connection->query($sql);
                 $sql_admin = "SELECT * FROM admin WHERE admin_name = '" . $user_name . "' OR admin_email = '" . $user_email . "';";
                 $query_check_admin_name = $this->db_connection->query($sql_admin);
@@ -94,7 +94,7 @@ class Register extends Model {
                         $this->errors[] = "Sorry, that username / email address is already taken.";
                     } else {
                         // write new user's data into database
-                        $sql = "INSERT INTO users (user_name, user_password_hash, user_email)
+                        $sql = "INSERT INTO user (user_name, user_password_hash, user_email)
                                 VALUES('" . $user_name . "', '" . $user_password_hash . "', '" . $user_email . "');";
                         $query_new_user_insert = $this->db_connection->query($sql);
 

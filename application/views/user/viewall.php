@@ -3,7 +3,7 @@
 $number = 0;
 
 ?>
-<?php foreach ($users as $useritem):?>
+<?php foreach ($user as $useritem):?>
 	<?php $path = BASE_PATH."/users/viewdetail/".$useritem['Users']['user_id']."/".strtolower(str_replace(" ","-",$useritem['Users']['user_name'])); ?>
 	<a class="big" href="<?php echo  $path?>">
 	<span class="user">

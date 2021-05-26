@@ -59,7 +59,7 @@ class Login extends Model {
                 // database query, getting all the info of the selected user (allows login via email address in the
                 // username field)
                 $sql_user = "SELECT user_id, user_name, user_email, user_password_hash
-                        FROM users
+                        FROM user
                         WHERE user_name = '" . $user_name . "' OR user_email = '" . $user_name . "';";
                 $result_of_login_user_check = $this->db_connection->query($sql_user);
                 $sql_admin = "SELECT admin_name, admin_email, admin_password_hash 

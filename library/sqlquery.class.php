@@ -80,7 +80,7 @@ class SQLQuery {
 	function query($id = NULL){
 		$from = '`'.$this->_table.'` as `'.$this->_model.'` ';
 		$conditions = '\'1\'=\'1\'';
-		echo $conditions;
+		// echo $conditions;
 		if ($this->_hO == 1 && isset($this->hasOne)) {
 			
 			foreach ($this->hasOne as $alias => $model) { //alisa = Country, model = Country
@@ -88,22 +88,22 @@ class SQLQuery {
 				$singularAlias = strtolower($alias);
 				$from .= 'LEFT JOIN `'.$table.'` as `'.$alias.'` ';
 				$from .= 'ON `'.$this->_model.'`.`'.$singularAlias.'` = `'.$alias.'`.`id`  ';
-				echo "<br>";
-				echo $from;
+				// echo "<br>";
+				// echo $from;
 			}
 		}
 		if ($id) {
 			$conditions .= ' AND '.'`'.$this->_model.'`.`id` = \''.$id.'\'';
 		}
 		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
-		echo "<br>";
-		echo $this ->_query;
+		// echo "<br>";
+		// echo $this ->_query;
 		$this->_result = mysqli_query($this->_dbHandle, $this->_query);
 		$result = array();
 		$table = array();
 		$field = array();
 		$numOfFields=mysqli_num_fields($this -> _result);
-		echo $numOfFields;
+		// echo $numOfFields;
 		while ($fieldinfo = mysqli_fetch_field($this->_result)) { 	
 			array_push($table, $fieldinfo->table);
 			array_push($field, $fieldinfo->name);
@@ -124,19 +124,19 @@ class SQLQuery {
 						$sortTables = array($pluralAliasChild,$this->_table); //array("song" => "artist")
 						sort($sortTables); //ne thuc su -> artist => song
 						$joinTable = implode('_',$sortTables);
-						echo $joinTable;
+						// echo $joinTable;
 						$fromChild .= '`'.$tableChild.'` as `'.$aliasChild.'`,';
 						$fromChild .= '`'.$joinTable.'`,';
-						echo "<br>";
-						echo $fromChild;
+						// echo "<br>";
+						// echo $fromChild;
 						$conditionsChild .= '`'.$joinTable.'`.`'.$singularAliasChild.'` = `'.$aliasChild.'`.`id` AND ';
 						$conditionsChild .= '`'.$joinTable.'`.`'.strtolower($this->_model).'` = \''.$tempResults[$this->_model]['id'].'\'';
 						$fromChild = substr($fromChild,0,-1);
-						echo "<br>";
-						echo $fromChild;
+						// echo "<br>";
+						// echo $fromChild;
 						$queryChild =  'SELECT * FROM '.$fromChild.' WHERE '.$conditionsChild;
-						echo "<br>";
-						echo $queryChild;
+						// echo "<br>";
+						// echo $queryChild;
 						$resultChild = mysqli_query($this->_dbHandle, $queryChild);
 	
 						$tableChild = array();
@@ -148,11 +148,11 @@ class SQLQuery {
 								array_push($tableChild, $fieldinfo->table); // Song, artist_song
 								array_push($fieldChild, $fieldinfo->name); 
 							}
-							echo "<br>";
-							echo sizeof($tableChild);
-							echo "<br>";
+							// echo "<br>";
+							// echo sizeof($tableChild);
+							// echo "<br>";
 							foreach($tableChild as $key => $value)	{
-								echo $key." ".$value."<br>";
+								// echo $key." ".$value."<br>";
 							}
 							$numOfFields = mysqli_num_fields($resultChild);
 							while ($rowChild = mysqli_fetch_row($resultChild)) {//rowChild là 1 mảng chứa các value

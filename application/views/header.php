@@ -11,7 +11,10 @@ $logged = isset($_SESSION['user_login_status']) || isset($_SESSION['admin_login_
 	<style>
 		<?php require(ROOT . "/public/css/theme.css"); ?>
 	</style>
+
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+
 	<div class="nav">
 		<input type="checkbox" id="nav-check">
 		<div class="nav-header">
@@ -30,8 +33,8 @@ $logged = isset($_SESSION['user_login_status']) || isset($_SESSION['admin_login_
 		<div class="nav-links">
 			<a href=<?php echo SONG_VIEWALL ?>>Songs</a>
 			<a href=<?php echo ARTIST_VIEWALL ?>>Artists</a>
-			<a href="https://in.linkedin.com/in/jonesvinothjoseph" target="_blank">Login</a>
-			<a href="https://in.linkedin.com/in/jonesvinothjoseph" target="_blank">Register</a>
+			<a href=<?php echo PATH_LOG?> >Login</a>
+			<a href=<?php echo PATH_REG?> >Register</a>
 		</div>
 	</div>
 </head>

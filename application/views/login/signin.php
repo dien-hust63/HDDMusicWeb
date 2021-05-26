@@ -1,4 +1,3 @@
-<h1>Sign in page</h1> 
 <?php
 
 if ($login->isUserLoggedIn() == 1 || $login->isAdminLoggedIn() == 1) {

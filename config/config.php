@@ -18,6 +18,7 @@ define('PAGINATE_LIMIT', '5');
 //define urls
 define('PATH_HOME', BASE_PATH . DS .'index');
 define('PATH_LOG', BASE_PATH . DS . 'login' . DS . 'signin');
+define('PATH_REG', BASE_PATH . DS . 'register' . DS . 'signup');
 define('ARTIST_VIEWALL', BASE_PATH . DS . 'artist' . DS . 'viewall');
 define('SONG_VIEWALL', BASE_PATH . DS . 'song' . DS . 'viewall');
 define('ADD_PLAYLIST', BASE_PATH . DS . 'playlist' . DS . 'add');  

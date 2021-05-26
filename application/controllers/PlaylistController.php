@@ -34,6 +34,7 @@ class PlaylistController extends Controller {
         //list song
     }
     function delete($id = null){
+        $login = new Login();
         $playlist= $this -> Playlist ->delete($id);
         $this -> set('playlist', $playlist);
     }

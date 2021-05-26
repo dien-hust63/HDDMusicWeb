@@ -6,7 +6,6 @@ require_once(ROOT . DS . 'application' . DS . 'models' . DS . 'country.php');
 class SongController extends Controller {
     function viewall(){
         $login = new Login();
-        
         $this -> Song -> showHasOne();
         $song = $this->Song->query();
         $this -> set('song', $song);
@@ -14,6 +13,7 @@ class SongController extends Controller {
     }
 
     function viewdetail($id = null){
+        $login = new Login();
         $this -> Song -> showHasOne();
         $this->Song->showHMABTM();
         $song = $this -> Song -> query($id);
@@ -21,7 +21,8 @@ class SongController extends Controller {
     }
 
     function add(){
-        $genre =new Genre();
+        $login = new Login();
+        $genre = new Genre();
         $queryset = $genre -> query();
         $country = new Country();
         $countryset = $country -> query();
@@ -64,6 +65,7 @@ class SongController extends Controller {
         }
     }
     function delete($id = null){
+        $login = new Login();
         $song = $this -> Song ->delete($id);
         $this -> set('song', $song);
     }

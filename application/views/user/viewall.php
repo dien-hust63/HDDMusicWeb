@@ -4,7 +4,7 @@ $number = 0;
 
 ?>
 <?php foreach ($user as $useritem):?>
-	<?php $path = BASE_PATH."/users/viewdetail/".$useritem['User']['user_id']."/".strtolower(str_replace(" ","-",$useritem['User']['user_name'])); ?>
+	<?php $path = BASE_PATH."/user/viewdetail/".$useritem['User']['user_id']."/".strtolower(str_replace(" ","-",$useritem['User']['user_name'])); ?>
 	<a class="big" href="<?php echo  $path?>">
 	<span class="user">
 	<?php echo ++$number?>

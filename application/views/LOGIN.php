@@ -1,3 +1,1 @@
-<form method="post" action=<?php PATH_LOG?>>
-<input type="submit" value="Log in"/>
-</form>
+<button value="Log in"><a href=<?php echo PATH_LOG?>>Log in</a></button>

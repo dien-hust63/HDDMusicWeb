@@ -1,4 +1,7 @@
-<h1>Vieww all</h1>
+<?php require_once(LOG_IN);?>
+<h1>GUEST PAGE</h1>
+<h3>This list of artists</h3>
+
 <?php 
 $number = 0;
 
@@ -12,4 +15,6 @@ $number = 0;
 	</span>
 	</a><br/>
 <?php endforeach?>
-<?php require_once(HOME_PAGE)?>
+<button><a href=<?php echo SONG_VIEWALL;?>>All songs</a></button>
+<br/>
+<button><a href=<?php echo ARTIST_VIEWALL?>>All artists</a></button>

@@ -18,7 +18,7 @@ do form submit redirect vào chính nó nên nó gọi country/add, lại tạo 
     </div>
 <?php endforeach; ?>
 
-
+<?php require_once(HOME_PAGE)?>
 <script>
     function addCountry(){
         document.getElementById("country_add_form").submit();
@@ -39,7 +39,5 @@ do form submit redirect vào chính nó nên nó gọi country/add, lại tạo 
 //             xmlhttp.open("GET", "gethint.php?q=" + str, true);
 //             xmlhttp.send();
 //   }
-        
-    }
 </script>
 	

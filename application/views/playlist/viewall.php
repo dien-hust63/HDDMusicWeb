@@ -1,3 +1,5 @@
+<h1>view all playlist</h1>
+<?php require_once(HOME_PAGE);?>
 <?php if($is_user): ?>
     <h1>My playlist</h1>
     <?php $number = 0;?>

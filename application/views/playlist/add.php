@@ -3,3 +3,4 @@
     <input type="text" name='playlist_name'>
     <input type="button" value="add" onclick = "addCountry()">
 </form>
+<?php require_once(HOME_PAGE);?>

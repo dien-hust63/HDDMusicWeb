@@ -28,7 +28,7 @@
     <br>
     <input type="button" value="add" onclick = "addSong()">
 </form>
-
+<?php require_once(HOME_PAGE);?>
 <script>
     function addSong(){
         document.getElementById("add_song_form").submit();

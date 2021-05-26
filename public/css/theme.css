@@ -145,3 +145,8 @@ body {
     text-decoration: none;
     color: #D52020;
 }
+
+.song-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

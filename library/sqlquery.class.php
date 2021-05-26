@@ -163,7 +163,6 @@ class SQLQuery {
 		mysqli_free_result($this->_result);
 		$this->clear();
 		return($result);
-
 	}
 
 	function customQuery($query){

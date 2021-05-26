@@ -6,7 +6,5 @@ if ($login->isUserLoggedIn() == 1 || $login->isAdminLoggedIn() == 1) {
     include("not_logged_in.php");
 }
 ?>
-<form method="post" action="../index">
-<input type="submit" value="Back to Homepage"></form>
 
 

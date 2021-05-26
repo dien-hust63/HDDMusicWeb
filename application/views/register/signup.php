@@ -1,4 +1,3 @@
-<h1>Sign up Page</h1>
 <?php
 // show potential errors / feedback (from registration object)
 if (isset($register)) {
@@ -16,25 +15,31 @@ if (isset($register)) {
 ?>
 
 <!-- register form -->
-<form method="post" action="signup" name="registerform">
-
-    <!-- the user name input field uses a HTML5 pattern check -->
-    <label for="login_input_username">Username (only letters and numbers, 2 to 64 characters)</label>
-    <input id="login_input_username" class="login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required />
+<form method="post" action="signup" name="registerform" class="login-form">
+    <h1>Sign up</h1>
+    <div class="textb">
+        <input id="login_input_username" class="login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required >
+        <div class="placeholder">Username (2-64 characters)</div>
+    </div>
 
     <!-- the email input field uses a HTML5 email type check -->
-    <label for="login_input_email">User's email</label>
-    <input id="login_input_email" class="login_input" type="email" name="user_email" required />
+    <div class="textb">
+        <input id="login_input_email" class="login_input" type="text" name="user_email" required />
+        <div class="placeholder">Email</div>
+    </div>
 
-    <label for="login_input_password_new">Password (min. 6 characters)</label>
-    <input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" />
+    <div class="textb">
+        <input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" />
+        <div class="placeholder">Password (min 6 characters)</div>
+    </div>
 
-    <label for="login_input_password_repeat">Repeat password</label>
-    <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />
-    <input type="submit"  name="register" value="Register" />
+    <div class="textb">
+        <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />
+        <div class="placeholder">Retype your password</div>
+    </div>
 
+    <a class="register-suggest" href=<?php echo PATH_LOG?> >Already had an account? Log in</a>
+    <button class="login-btn" type="submit"  name="register">Register</button>
 </form>
 <!-- backlink -->
-<button><a href="../login/signin">Back to Login Page</a></button>
-<form action="../index" method="post">
-<input type="submit" value="Back to Homepage"></form>
+

@@ -25,7 +25,7 @@ if (isset($login)) {
         <input id="" type="password" required>
         <div class="placeholder">Password</div>
     </div>
-
+    <a class="register-suggest" href=<?php echo PATH_REG?> >Don't have an account? Register now.</a>
     <button type="submit" class="login-btn" disabled> Login </button>
 </form>
 
@@ -43,15 +43,4 @@ if (isset($login)) {
     fields[0].addEventListener("keyup", check);
     fields[1].addEventListener("keyup", check);
 
-    document.querySelector(".show-password").addEventListener("click", function() {
-        if (this.classList[2] == "fa-eye-slash") {
-            this.classList.remove("fa-eye-slash");
-            this.classList.add("fa-eye");
-            fields[1].type = "text";
-        } else {
-            this.classList.remove("fa-eye");
-            this.classList.add("fa-eye-slash");
-            fields[1].type = "password";
-        }
-    });
 </script>

@@ -19,7 +19,9 @@ $logged = isset($_SESSION['user_login_status']) || isset($_SESSION['admin_login_
 		<input type="checkbox" id="nav-check">
 		<div class="nav-header">
 			<div class="nav-title">
-				<img src=<?php echo BASE_PATH . DS . "public" . DS . "assets" . DS . "img" . DS . "logo.png" ?> style="height: 40px">
+				<a style="display: block" href=<?php echo PATH_HOME?>>
+					<img src=<?php echo BASE_PATH . DS . "public" . DS . "assets" . DS . "img" . DS . "logo.png" ?> style="height: 40px">
+				</a>
 			</div>
 		</div>
 		<div class="nav-btn">

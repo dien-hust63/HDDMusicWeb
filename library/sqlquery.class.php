@@ -76,7 +76,7 @@ class SQLQuery {
 		$this->_order = $order;
 	}
 	//Custom SQL query
-	function query($id = NULL){
+	function query($id = NULL, $addCondition = NULL){
 		$from = '`'.$this->_table.'` as `'.$this->_model.'` ';
 		$conditions = '\'1\'=\'1\'';
 		if ($this->_hO == 1 && isset($this->hasOne)) {
@@ -91,7 +91,11 @@ class SQLQuery {
 		if ($id) {
 			$conditions .= ' AND '.'`'.$this->_model.'`.`id` = \''.$id.'\'';
 		}
+		if($addCondition){
+			$condition .= ' AND '.$addCondition;
+		}
 		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
+		echo $this->_query;
 		$this->_result = mysqli_query($this->_dbHandle, $this->_query);
 		$result = array();
 		$table = array();

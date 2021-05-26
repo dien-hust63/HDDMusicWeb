@@ -28,8 +28,8 @@ $logged = isset($_SESSION['user_login_status']) || isset($_SESSION['admin_login_
 		</div>
 
 		<div class="nav-links">
-			<a href=<?php echo PATH_SONG_VIEWALL ?>>Songs</a>
-			<a href=<?php echo PATH_ARTIST_VIEWALL ?>>Artists</a>
+			<a href=<?php echo SONG_VIEWALL ?>>Songs</a>
+			<a href=<?php echo ARTIST_VIEWALL ?>>Artists</a>
 			<a href="https://in.linkedin.com/in/jonesvinothjoseph" target="_blank">Login</a>
 			<a href="https://in.linkedin.com/in/jonesvinothjoseph" target="_blank">Register</a>
 		</div>

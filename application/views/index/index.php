@@ -1,3 +1,4 @@
+<!-- 
 <?php
 if (isset($_SESSION['user_login_status']) || isset($_SESSION['admin_login_status'])){
 	if ($_SESSION['user_login_status'] == 1) {
@@ -11,16 +12,16 @@ if (isset($_SESSION['user_login_status']) || isset($_SESSION['admin_login_status
 		include(LOG_OUT);
 	}
 } else {
-	echo PATH_LOG;
 	?>
 	<form action="http://localhost/HDDMusicWeb\login\signin" method="post">
 	<input type="submit" value="Log in"></form>
 	<form action="login/signin" method="post">
 	<input type="submit" value="Log in"></form><?php
 }
-?>
-<h1>Index page</h1>
-<h3>This list of artists</h3>
+?> 
+-->
+<h1 class="front-text">Welcome to HustMP3</h1>
+<h3 class="sub-header">Choose your favorite artist and enjoy the music</h3>
 
 <?php 
 $number = 0;

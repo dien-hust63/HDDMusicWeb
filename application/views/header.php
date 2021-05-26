@@ -3,6 +3,7 @@
 
 <?php
 $logged = isset($_SESSION['user_login_status']) || isset($_SESSION['admin_login_status']);
+$isAdmin = isset($_SESSION['admin_login_status']) && $_SESSION['admin_login_status'] == 1;
 ?>
 
 <head>
@@ -39,9 +40,11 @@ $logged = isset($_SESSION['user_login_status']) || isset($_SESSION['admin_login_
 			<?php if (!$logged) : ?>
 				<a href=<?php echo PATH_LOG ?>>Login</a>
 				<a href=<?php echo PATH_REG ?>>Register</a>
+			<?php elseif ($isAdmin): ?>
+				<a href=<?php echo PATH_HOME ?>>Admin</a>
 			<?php else : ?>
 				<a href="#"> Your playlists</a>
-				<form method="post" action=<?php echo PATH_LOG?> style="display: inline">
+				<form method="post" action=<?php echo PATH_LOG ?> style="display: inline">
 					<button type="submit" type="submit" name="logout" value="Log out" class="link-button">
 						Logout
 					</button>

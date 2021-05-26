@@ -1,4 +1,3 @@
-<h1>Vieww all</h1>
 <?php 
 $number = 0;
 ?>

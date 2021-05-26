@@ -7,7 +7,7 @@ define ('DEVELOPMENT_ENVIRONMENT',true);
 
 define('DB_NAME', 'hddmusic');
 define('DB_USER', 'root');
-define('DB_PASSWORD', 'Dung3112');
+define('DB_PASSWORD', '');
 define('DB_HOST', 'localhost');
 
 define('BASE_PATH','http://localhost/HDDMusicWeb');
@@ -22,6 +22,7 @@ define('PATH_REG', BASE_PATH . DS . 'register' . DS . 'signup');
 define('ARTIST_VIEWALL', BASE_PATH . DS . 'artist' . DS . 'viewall');
 define('SONG_VIEWALL', BASE_PATH . DS . 'song' . DS . 'viewall');
 define('ADD_PLAYLIST', BASE_PATH . DS . 'playlist' . DS . 'add');  
+define('ADD_ARTIST', BASE_PATH . DS . 'artist' . DS . 'add');  
 define('ADD_SONG', BASE_PATH . DS . 'song' . DS . 'add');
 define('ADD_COUNTRY', BASE_PATH . DS . 'country' . DS . 'add');
 define('PLAYLIST_VIEWALL', BASE_PATH . DS . 'playlist' . DS . 'viewall');

@@ -13,6 +13,10 @@
     $song_path = BASE_PATH."/song/viewdetail/".$element['Song']['id']."/".strtolower(str_replace(" ","-",$element['Song']['name'])); 
 ?>
 
+<form action=<?php echo PATH_ARTIST_VIEWALL?>  method="post">
+<input type="submit" value="Back to Artist"></form>
+<?php include(HOME_PAGE);?>
+
 <div>
     <span><?= $count ?> .</span>
     <a href= <?= $song_path ?> > <?= $element['Song']['name'] ?> </a>
@@ -26,3 +30,4 @@
 <?php else: ?>
 <div>Have no song in database</div>
 <?php endif ?>
+

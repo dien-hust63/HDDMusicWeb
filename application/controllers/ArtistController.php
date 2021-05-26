@@ -40,5 +40,4 @@ class ArtistController extends Controller {
 
     }
 
-
 }

@@ -12,3 +12,4 @@ $number = 0;
 	</span>
 	</a><br/>
 <?php endforeach?>
+<?php include(HOME_PAGE)?>

@@ -1,0 +1,15 @@
+Admin accounts:
+1.
+Name: nguyentiendung
+Pass: Dung2000
+Email: nguyentiendung2000@gmail.com
+
+User accounts:
+1.
+Name: nguyenvandien
+Pass: Dien2000
+Email: nguyenvandien2000@gmail.com
+2.
+Name: tranduchuy
+Pass: Huy2000
+Email: tranduchuy2000@gmail.com

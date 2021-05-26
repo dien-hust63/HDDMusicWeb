@@ -92,7 +92,7 @@ class SQLQuery {
 			$conditions .= ' AND '.'`'.$this->_model.'`.`id` = \''.$id.'\'';
 		}
 		if($addCondition){
-			$condition .= ' AND '.$addCondition;
+			$conditions .= ' AND '.$addCondition;
 		}
 		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
 		$this->_result = mysqli_query($this->_dbHandle, $this->_query);

@@ -39,5 +39,8 @@ class ArtistController extends Controller {
             }
         }
     }
-
+    function delete($id = null){
+        $artist = $this -> Artist ->delete($id);
+        $this -> set('artist', $artist);
+    }
 }

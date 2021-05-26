@@ -177,12 +177,15 @@ class SQLQuery {
 	}
     /** Delete an Object **/
 
-	function delete() {
-		if ($this->id) {
-			$query = 'DELETE FROM '.$this->_table.' WHERE `id`=\''.mysql_real_escape_string($this->id).'\'';		
-			$this->_result = mysql_query($query, $this->_dbHandle);
+	function delete($id=null) {
+		if ($id) {
+			$query = 'DELETE FROM '.$this->_table.' WHERE `id`=\''. $id .'\'';		
+			$this->_result = mysqli_query($this->_dbHandle, $query);
 			$this->clear();
-			if ($this->_result == 0) {
+			if ($this->_result) {
+				return $this->query();
+			}
+			else if ($this->_result == 0) {
 			    /** Error Generation **/
 				return -1;
 		   }

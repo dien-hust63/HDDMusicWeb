@@ -14,6 +14,17 @@ if (isset($login)) {
 }
 ?>
 
+<!-- <form method="post" action="../index" name="loginform">
+
+    <label for="login_input_username">Username</label>
+    <input id="login_input_username" class="login_input" type="text" name="user_name" required />
+
+    <label for="login_input_password">Password</label>
+    <input id="login_input_password" class="login_input" type="password" name="user_password" autocomplete="off" required />
+
+    <input type="submit"  name="login" value="Log in" />
+
+</form> -->
 <form method="post" action="../index" name="loginform" class="login-form">
     <h1>Sign In</h1>
     <div class="textb">
@@ -26,7 +37,7 @@ if (isset($login)) {
         <div class="placeholder">Password</div>
     </div>
     <a class="register-suggest" href=<?php echo PATH_REG?> >Don't have an account? Register now.</a>
-    <button type="submit" class="login-btn" disabled> Login </button>
+    <button type="submit" name="login" value="Log in" class="login-btn" disabled> Login </button>
 </form>
 
 <script>

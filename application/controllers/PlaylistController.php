@@ -33,5 +33,8 @@ class PlaylistController extends Controller {
     function viewdetail($id=null){
         //list song
     }
-
+    function delete($id = null){
+        $playlist= $this -> Playlist ->delete($id);
+        $this -> set('playlist', $playlist);
+    }
 }

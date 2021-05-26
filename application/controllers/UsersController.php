@@ -5,6 +5,10 @@ class UsersController extends Controller {
         $users = $this -> Users -> query();
         $this -> set('users', $users);
     }
+    function delete($id = null){
+        $users= $this -> Users ->delete($id);
+        $this -> set('users', $users);
+    }
 }
 
  

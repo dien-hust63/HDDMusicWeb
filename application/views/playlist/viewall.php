@@ -11,7 +11,7 @@
         <?php echo $playlistitem['Playlist']['name']?>
         </span>
         </a>
-        <button>Delete</button><br/>
+        <button><a href= <?php echo BASE_PATH . "/playlist/delete/" . $playlistitem['Playlist']['id']. "/"?>>Delete</a></button><br/>	 
     <?php endforeach ?>
 <?php else: ?>
     <h1>You don't have permission</h1>

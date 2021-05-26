@@ -56,10 +56,10 @@ class SongController extends Controller {
                 $this -> Song -> customQuery($query3);
            
             }
-        
-            }
-            
+        }
     }
-
-
+    function delete($id = null){
+        $song = $this -> Song ->delete($id);
+        $this -> set('song', $song);
+    }
 }

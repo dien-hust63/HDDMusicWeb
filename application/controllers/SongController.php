@@ -66,7 +66,12 @@ class SongController extends Controller {
     }
     function delete($id = null){
         $login = new Login();
-        $song = $this -> Song ->delete($id);
-        $this -> set('song', $song);
+        if (isset($_SESSION['admin_login_status']) AND $_SESSION['admin_login_status'] == 1) {
+            $song = $this -> Song ->delete($id);
+            $this -> set('song', $song);
+        } else {
+            $song = $this -> Song;
+            $this -> set('song', $song);
+        }
     }
 }

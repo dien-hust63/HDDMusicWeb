@@ -95,7 +95,7 @@ class SQLQuery {
 			$condition .= ' AND '.$addCondition;
 		}
 		$this->_query = 'SELECT * FROM '.$from.' WHERE '.$conditions;
-		echo $this->query;
+		echo $this->_query;
 		$this->_result = mysqli_query($this->_dbHandle, $this->_query);
 		$result = array();
 		$table = array();

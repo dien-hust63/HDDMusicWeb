@@ -4,3 +4,13 @@
     <input type="button" value="add" onclick = "addCountry()">
 </form>
 <?php require_once(HOME_PAGE);?>
+    <input type="button" value="add" onclick = "addPlaylist()">
+</form>
+
+
+<script>
+    function addPlaylist(){
+        document.getElementById("add_playlist_form").submit();
+    }
+</script>
+

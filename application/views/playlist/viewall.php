@@ -10,7 +10,8 @@
         <?php echo ++$number?>
         <?php echo $playlistitem['Playlist']['name']?>
         </span>
-        </a><br/>
+        </a>
+        <button>Delete</button><br/>
     <?php endforeach ?>
 <?php else: ?>
     <h1>You don't have permission</h1>

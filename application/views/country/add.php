@@ -13,7 +13,7 @@ do form submit redirect vào chính nó nên nó gọi country/add, lại tạo 
     <div id ="country_<?= $countryitem['Country']['id']; ?>">
         <label for="country_name"><?php echo $count." ".$countryitem['Country']['name'] ?></label>
         <input type="button" value="Edit" onclick="editCountry()">
-        <input type="button" value="Delete" onclick="deleteCountry(<?= $countryitem['Country']['id']; ?>)">
+        <input type="button" value="Delete" onclick="deleteCountry(<?php $countryitem['Country']['id']; ?>)">
         
     </div>
 <?php endforeach; ?>

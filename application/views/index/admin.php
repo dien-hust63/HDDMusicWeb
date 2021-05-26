@@ -19,8 +19,8 @@ $number = 0;
 	</span>
 	</a><br/>
 <?php endforeach?>
-<button><a href=<?php echo ADD_SONG?>>Add song</a></button>
-<br/>
-<button><a href=<?php echo ADD_COUNTRY?>>Add country</a></button>
-<br/>
 <button><a href=<?php echo USER_VIEWALL?>>All users</a></button>
+<br/>
+<button><a href=<?php echo ARTIST_VIEWALL?>>All artists</a></button>
+<br/>
+<button><a href=<?php echo SONG_VIEWALL?>>All songs</a></button>

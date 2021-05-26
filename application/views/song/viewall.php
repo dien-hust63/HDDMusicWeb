@@ -10,6 +10,7 @@ $number = 0;
 	<?php echo ++$number?>
 	<?php echo $songitem['Song']['name']?>
 	</span>
-	</a><br/>
+	</a>
+	<button>Delete</button><br/>
 <?php endforeach?>
 <?php include(HOME_PAGE)?>

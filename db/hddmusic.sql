@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 26, 2021 lúc 10:57 AM
+-- Thời gian đã tạo: Th5 26, 2021 lúc 03:30 PM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.11
 
@@ -64,7 +64,11 @@ INSERT INTO `artist` (`id`, `name`, `age`, `hometown`, `country`, `avatar`) VALU
 (2, 'Sơn Tùng MTP', 26, 'Thai Binh', 1, 'sontung.jpg'),
 (4, 'Hoàng Dũng', 25, 'Thái Nguyên', 1, 'hoangdung.png'),
 (5, 'Đen Vâu', 32, 'Quảng Ninh', 1, 'denvau.jpg'),
-(6, 'Chillies', 32, 'Quảng Ninh', 1, 'chillies.jpg');
+(6, 'Chillies', 32, 'Quảng Ninh', 1, 'chillies.jpg'),
+(7, 'Hồ Ngọc Hà', 36, 'Huế', 1, 'hongocha.jpg'),
+(8, 'MCK', 22, 'Hà Nội', 1, 'mck.jpg'),
+(9, 'Noo Phước Thịnh', 32, 'Hồ Chí Minh', 1, 'noophuocthinh.jpg'),
+(10, 'Bích Phương', 31, 'Hạ Long', 1, 'bichphuong.jpg');
 
 -- --------------------------------------------------------
 
@@ -86,7 +90,30 @@ INSERT INTO `artist_song` (`id`, `artist`, `song`) VALUES
 (1, 4, 1),
 (2, 2, 5),
 (4, 5, 3),
-(5, 6, 11);
+(5, 6, 11),
+(6, 2, NULL),
+(7, 2, NULL),
+(8, 2, NULL),
+(9, 2, NULL),
+(10, 2, NULL),
+(11, 2, NULL),
+(12, 2, NULL),
+(13, 2, NULL),
+(14, 2, NULL),
+(15, 2, NULL),
+(16, 2, NULL),
+(17, 2, NULL),
+(18, 2, NULL),
+(19, 2, NULL),
+(20, 2, NULL),
+(21, 2, NULL),
+(22, 2, NULL),
+(23, 2, NULL),
+(24, 2, NULL),
+(25, 2, NULL),
+(26, 2, NULL),
+(27, 2, NULL),
+(28, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -153,6 +180,16 @@ CREATE TABLE `playlist` (
   `name` varchar(255) NOT NULL,
   `user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `playlist`
+--
+
+INSERT INTO `playlist` (`id`, `name`, `user`) VALUES
+(2, 'mydjfa', 7),
+(3, 'mydjfa', 7),
+(4, 'sdfEWF', 7),
+(5, 'aff', 7);
 
 -- --------------------------------------------------------
 
@@ -298,13 +335,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT cho bảng `artist`
 --
 ALTER TABLE `artist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `artist_song`
 --
 ALTER TABLE `artist_song`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `country`
@@ -322,7 +359,7 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT cho bảng `playlist`
 --
 ALTER TABLE `playlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `playlist_song`
@@ -334,7 +371,7 @@ ALTER TABLE `playlist_song`
 -- AUTO_INCREMENT cho bảng `song`
 --
 ALTER TABLE `song`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT cho bảng `users`

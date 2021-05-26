@@ -1,11 +1,16 @@
 <?php
 require_once(ROOT . DS . 'application' . DS . 'models' . DS . 'genre.php');
+require_once(ROOT . DS . 'application' . DS . 'models' . DS . 'login.php');
 require_once(ROOT . DS . 'application' . DS . 'models' . DS . 'country.php');
+
 class SongController extends Controller {
     function viewall(){
+        $login = new Login();
+        
         $this -> Song -> showHasOne();
         $song = $this->Song->query();
         $this -> set('song', $song);
+        $this->set('index', $login);
     }
 
     function viewdetail($id = null){

@@ -1,11 +1,15 @@
 
 <?php
 require_once(ROOT . DS . 'application' . DS . 'models' . DS . 'country.php');
+require_once(ROOT . DS . 'application' . DS . 'models' . DS . 'login.php');
 class ArtistController extends Controller {
     function viewall(){
+        $login = new Login();
+
         $this -> Artist -> showHasOne();
         $artist = $this -> Artist -> query();
         $this -> set('artist', $artist);
+        $this -> set('login', $login);
     }
 
     function viewdetail($id = null){

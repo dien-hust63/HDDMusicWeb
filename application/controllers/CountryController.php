@@ -5,7 +5,6 @@ class CountryController extends Controller {
     function add(){
         if(isset($_POST['country'])){
             $country_name = $_POST['country'];
-            echo "test";
             $query = "INSERT INTO `country`(`name`) VALUES ('$country_name');";
             $this -> Country -> customQuery($query) ;
         }

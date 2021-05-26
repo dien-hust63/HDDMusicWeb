@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 24, 2021 lúc 04:22 AM
+-- Thời gian đã tạo: Th5 26, 2021 lúc 10:57 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.11
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `hddmusic`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL,
+  `admin_name` varchar(64) NOT NULL,
+  `admin_password_hash` varchar(255) NOT NULL,
+  `admin_email` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_password_hash`, `admin_email`) VALUES
+(4, 'nguyentiendung', '$2y$10$yRVJG8e0oIMdE0qMLw8LpOgGSg93DhxReiXRoLi5m9fx67kjs8n/K', 'nguyentiendung2000@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -41,8 +61,10 @@ CREATE TABLE `artist` (
 --
 
 INSERT INTO `artist` (`id`, `name`, `age`, `hometown`, `country`, `avatar`) VALUES
-(2, 'Son Tung', 26, 'Thai Binh', 1, ''),
-(4, 'Hoàng Dũng', 25, 'Thái Nguyên', 1, '');
+(2, 'Sơn Tùng MTP', 26, 'Thai Binh', 1, 'sontung.jpg'),
+(4, 'Hoàng Dũng', 25, 'Thái Nguyên', 1, 'hoangdung.png'),
+(5, 'Đen Vâu', 32, 'Quảng Ninh', 1, 'denvau.jpg'),
+(6, 'Chillies', 32, 'Quảng Ninh', 1, 'chillies.jpg');
 
 -- --------------------------------------------------------
 
@@ -61,7 +83,10 @@ CREATE TABLE `artist_song` (
 --
 
 INSERT INTO `artist_song` (`id`, `artist`, `song`) VALUES
-(1, 4, 1);
+(1, 4, 1),
+(2, 2, 5),
+(4, 5, 3),
+(5, 6, 11);
 
 -- --------------------------------------------------------
 
@@ -86,14 +111,14 @@ INSERT INTO `country` (`id`, `name`) VALUES
 (42, 'dfs'),
 (45, 'England'),
 (33, 'fads'),
+(47, 'France'),
 (13, 'Indonexia'),
 (5, 'Japan'),
 (4, 'Korea'),
 (12, 'Lao'),
 (20, 'Singapore'),
 (2, 'Thailand'),
-(1, 'Viet Nam'),
-(11, 'VietNam');
+(1, 'Viet Nam');
 
 -- --------------------------------------------------------
 
@@ -129,13 +154,6 @@ CREATE TABLE `playlist` (
   `user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Đang đổ dữ liệu cho bảng `playlist`
---
-
-INSERT INTO `playlist` (`id`, `name`, `user`) VALUES
-(1, 'myplaylist1', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -147,32 +165,6 @@ CREATE TABLE `playlist_song` (
   `playlist` int(11) NOT NULL,
   `song` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `playlist_song`
---
-
-INSERT INTO `playlist_song` (`id`, `playlist`, `song`) VALUES
-(1, 1, 1);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `role`
---
-
-CREATE TABLE `role` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `role`
---
-
-INSERT INTO `role` (`id`, `name`) VALUES
-(1, 'admin'),
-(2, 'user');
 
 -- --------------------------------------------------------
 
@@ -196,33 +188,43 @@ CREATE TABLE `song` (
 --
 
 INSERT INTO `song` (`id`, `name`, `lyrics`, `genre`, `country`, `link`, `summary`, `image`) VALUES
-(1, 'Nàng thơ', NULL, 1, 1, NULL, NULL, NULL);
+(1, 'Nàng thơ', NULL, 1, 1, 'nangtho.mp3', NULL, 'nangtho.jpg'),
+(3, 'Hai Triệu Năm', NULL, 2, 1, 'haitrieunam.mp3', NULL, 'haitrieunam.png'),
+(5, 'Nắng ấm xa dần', NULL, 1, 1, 'nangamxadan.mp3', NULL, 'nangamxadan.jpeg'),
+(11, 'Vùng kí ức', NULL, 1, 1, 'vungkyuc.mp3', NULL, 'vungkyuc.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `user`
+-- Cấu trúc bảng cho bảng `users`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `avatar` varchar(255) DEFAULT NULL,
-  `role` int(11) DEFAULT NULL
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(64) NOT NULL,
+  `user_password_hash` varchar(255) NOT NULL,
+  `user_email` varchar(64) NOT NULL,
+  `user_image` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `user`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `avatar`, `role`) VALUES
-(1, 'admin1', '12345', NULL, 1),
-(3, 'user1', '12345', NULL, 2);
+INSERT INTO `users` (`user_id`, `user_name`, `user_password_hash`, `user_email`, `user_image`) VALUES
+(7, 'nguyenvandien', '$2y$10$wCcTckBvmC3I6.TVOjNblOvl9Xc5p64nXfkkoSG7r2G9RRWXoDYjG', 'nguyenvandien2000@gmail.com', NULL),
+(8, 'tranduchuy', '$2y$10$HRmWhNaL0JJ.0t0aK7Ekje5GiAQ64q6xaSkQ8Z2zXMcrj5DXMICy.', 'tranduchuy2000@gmail.com', NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `admin_name` (`admin_name`);
 
 --
 -- Chỉ mục cho bảng `artist`
@@ -257,7 +259,7 @@ ALTER TABLE `genre`
 --
 ALTER TABLE `playlist`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_playlist_user` (`user`);
+  ADD KEY `FK_playlist_user_2` (`user`);
 
 --
 -- Chỉ mục cho bảng `playlist_song`
@@ -268,12 +270,6 @@ ALTER TABLE `playlist_song`
   ADD KEY `FK_song_playlist_2` (`song`);
 
 --
--- Chỉ mục cho bảng `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Chỉ mục cho bảng `song`
 --
 ALTER TABLE `song`
@@ -282,33 +278,39 @@ ALTER TABLE `song`
   ADD KEY `FK_song_country` (`country`);
 
 --
--- Chỉ mục cho bảng `user`
+-- Chỉ mục cho bảng `users`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_user_role` (`role`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `user_name` (`user_name`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
+-- AUTO_INCREMENT cho bảng `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT cho bảng `artist`
 --
 ALTER TABLE `artist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `artist_song`
 --
 ALTER TABLE `artist_song`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `country`
 --
 ALTER TABLE `country`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT cho bảng `genre`
@@ -329,22 +331,16 @@ ALTER TABLE `playlist_song`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `role`
---
-ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT cho bảng `song`
 --
 ALTER TABLE `song`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT cho bảng `user`
+-- AUTO_INCREMENT cho bảng `users`
 --
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -367,7 +363,7 @@ ALTER TABLE `artist_song`
 -- Các ràng buộc cho bảng `playlist`
 --
 ALTER TABLE `playlist`
-  ADD CONSTRAINT `FK_playlist_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_playlist_user_2` FOREIGN KEY (`user`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `playlist_song`
@@ -382,12 +378,6 @@ ALTER TABLE `playlist_song`
 ALTER TABLE `song`
   ADD CONSTRAINT `FK_song_country` FOREIGN KEY (`country`) REFERENCES `country` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `FK_song_genre` FOREIGN KEY (`genre`) REFERENCES `genre` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
-
---
--- Các ràng buộc cho bảng `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `FK_user_role` FOREIGN KEY (`role`) REFERENCES `role` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

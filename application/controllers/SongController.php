@@ -53,7 +53,6 @@ class SongController extends Controller {
                 $query = "INSERT INTO `song`(`name`,`link`, `image`, `genre`,`country`) VALUES ('$song_name','$file_name', '$image_file','$genre', '$country')";
                 
                 if($this -> Song -> customQuery($query)){
-                    echo "add successfully";
                 }
                 $query2 = "SELECT `id` FROM `song` WHERE `name` = '$song_name' AND `link` = '$file_name' ";
                 $result = $this -> Song -> customQuery($query2);

@@ -1,21 +1,11 @@
 <?php
-echo "<br/> Hey admin " . $_SESSION['admin_name'] . ". You are logged in.";
-require_once(LOG_OUT);
+echo "<br/> <h4>Hey admin " . $_SESSION['admin_name'] . ". You are logged in.</h4>";
 ?>
-
+</br>
 <?php
 $number = 0;
 
 ?>
-<!-- <?php foreach ($artist as $artistitem) : ?>
-	<?php $path = BASE_PATH . "/artist/viewdetail/" . $artistitem['Artist']['id'] . "/" . strtolower(str_replace(" ", "-", $artistitem['Artist']['name'])); ?>
-	<a class="big" href="<?php echo  $path ?>">
-	<span class="artist">
-	<?php echo ++$number ?>
-	<?php echo $artistitem['Artist']['name'] ?>
-	</span>
-	</a><br/>
-<?php endforeach ?> -->
 <div class="admin-container">
 	<a href=<?php echo USER_VIEWALL ?>>
 		<div class="admin-choice admin-user-choice">

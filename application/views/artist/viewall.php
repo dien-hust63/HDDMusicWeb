@@ -18,7 +18,7 @@ $number = 0;
 					</span>
 				</a>
 			</div>
-			<button><a href=<?php echo BASE_PATH . "/artist/delete/" . $artistitem['Artist']['id'] . "/" ?>>Delete</a></button><br />
+			<button class="btn-delete"><a style=":text-decoration: none;" href=<?php echo BASE_PATH . "/artist/delete/" . $artistitem['Artist']['id'] . "/" ?>>Delete</a></button><br />
 		</li>
 	<?php endforeach ?>
 	<?php else:?>

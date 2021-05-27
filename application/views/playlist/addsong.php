@@ -1,5 +1,4 @@
-<h1>addsong</h1>
-<h1>Vieww all</h1>
+<h1>Add Song</h1>
 <?php 
 $number = 0;
 

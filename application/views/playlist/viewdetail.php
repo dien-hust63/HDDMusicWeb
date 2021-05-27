@@ -5,7 +5,7 @@
                 echo $playlistname; break;?></h4>
 <?php endforeach ?>
 <br/>
-<button><a href=<?php echo BASE_PATH . DS . 'playlist' . DS . 'addsong' . DS . $playlistid . DS . $playlistname?>>Add song</a></button>
+<button><a href=<?php echo BASE_PATH . DS . 'playlist' . DS . 'addsong' . DS . $playlistid . DS ?>>Add song</a></button>
 <br>
 <?php $number = 0?>
 <?php

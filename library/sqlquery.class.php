@@ -180,10 +180,10 @@ class SQLQuery {
 	function customQuery($query){
 		$result = mysqli_query($this->_dbHandle, $query);
 		if ($result) {
-			return $result->fetch_array();
+			return $this->query();
 		}
 		else {
-			return 0;
+			return -1;
 		}
 	}
     /** Delete an Object **/

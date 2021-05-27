@@ -1,9 +1,9 @@
-<h1>view detail</h1>
 <?php foreach ($playlist_name as $playlistitem):?>
     <h4><?php $playlistname = $playlistitem['Playlist']['name']; 
                 $playlistid = $playlistitem['Playlist']['id'];
-                echo $playlistname; break;?></h4>
+                 break;?></h4>
 <?php endforeach ?>
+<h1><?php echo $playlistname;?></h1>
 <br/>
 <button><a href=<?php echo BASE_PATH . DS . 'playlist' . DS . 'addsong' . DS . $playlistid . DS ?>>Add song</a></button>
 <br>

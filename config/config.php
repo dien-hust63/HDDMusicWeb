@@ -31,4 +31,3 @@ define('USER_VIEWALL', BASE_PATH . DS . 'user' . DS . 'viewall');
 // Methods
 define('HOME_PAGE', ROOT . DS . 'application' . DS . 'views' . DS . 'backToHomepage.php');
 define('LOG_OUT', ROOT . DS . 'application' . DS . 'views' . DS . 'LOGOUT.php');
-define('LOG_IN', ROOT . DS . 'application' . DS . 'views' . DS . 'LOGIN.php');  

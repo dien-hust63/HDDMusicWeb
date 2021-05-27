@@ -1,4 +1,3 @@
-<h1>view all playlist</h1>
 <?php require_once(HOME_PAGE);?>
 <?php if (isset($_SESSION['user_login_status']) AND ($_SESSION['user_login_status'] == 1)):?>
     <h1>My playlist</h1>

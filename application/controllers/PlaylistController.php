@@ -33,16 +33,26 @@ class PlaylistController extends Controller {
     function addsong($playlist_id = null, $song_id = null) {
         $login = new Login();
         $song = new Song();
+        $check = 0;
         if(isset($_SESSION['user_login_status']) AND ($_SESSION['user_login_status'] == 1)){
-            $sql = 'INSERT INTO playlist_song VALUES(null, ' . $playlist_id . ',' . $song_id . ')';
-            $this -> Playlist -> customQuery($sql);
+            //check songs in playlist
+            if($song_id == null) $song_id = -1;
+            $sqlcheck = 'SELECT * FROM playlist_song WHERE playlist = '. $playlist_id . ' AND song = ' . $song_id;
+            $result = $this -> Playlist -> customQueryCheck($sqlcheck);
+
+            if ($result == 0 && $song_id != null){
+                $sql = 'INSERT INTO playlist_song VALUES(null, ' . $playlist_id . ',' . $song_id . ')';
+                $this -> Playlist -> customQuery($sql);
+                $check = 1;
+                $this -> set('check', $check);
+            }
             $user_id = $_SESSION['user_id'];
             $condition = 'user = ' . $user_id ;
             $playlist = $this -> Playlist -> query(NULL, $condition);
             $this -> set('playlist', $playlist);
             $song-> showHasOne();
             $this -> set('song', $song->query());
-        }
+        } 
     }
     function viewdetail($id=null){
         $login = new Login();

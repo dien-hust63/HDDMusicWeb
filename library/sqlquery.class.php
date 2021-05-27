@@ -186,6 +186,17 @@ class SQLQuery {
 			return -1;
 		}
 	}
+	function customQueryCheck($query){
+		$result = mysqli_query($this->_dbHandle, $query);
+		$nrows = mysqli_num_rows($result);
+		
+		if ($result) {
+			return $nrows;
+		}
+		else {
+			return -1;
+		}
+	}
     /** Delete an Object **/
 
 	function delete($id=null) {

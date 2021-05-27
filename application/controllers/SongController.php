@@ -7,6 +7,7 @@ class SongController extends Controller {
     function viewall(){
         $login = new Login();
         $this -> Song -> showHasOne();
+        $this->Song->showHMABTM();
         $song = $this->Song->query();
         $this -> set('song', $song);
         $this->set('index', $login);

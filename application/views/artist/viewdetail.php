@@ -1,31 +1,32 @@
-<h1><?php echo $artist['Artist']['name']?></h1>
-<img src=<?php echo BASE_PATH.DS."public".DS."assets".DS."img".DS.$artist['Artist']['avatar'] ?> alt= "<?php echo $artist['Artist']['name']?>" style="width: 300px; height:400px;">
-<p>tuoi: <?php echo $artist['Artist']['age']?></p>
-<p>Quốc gia: <?php echo $artist['Country']['name']?></p>
+<div class="song-layout">
+    <div class="left-column">
+        <?php
+        $count = 0;
+        $imgPath = BASE_PATH . "/public/assets/img/" . $artist['Artist']['avatar']
+        ?>
+        <h2>List of songs</h2>
 
-<h2>List of songs</h2>
-<?php  $count = 0; ?>
-<?php if(!empty($artist['Song'])): ?>
-<?php foreach($artist['Song'] as $element): ?>   
-      
-<?php 
-    $count ++;      
-    $song_path = BASE_PATH."/song/viewdetail/".$element['Song']['id']."/".strtolower(str_replace(" ","-",$element['Song']['name'])); 
-?>
+        <?php if (!empty($artist['Song'])) : ?>
+                <?php foreach ($artist['Song'] as $element) : ?>
+                    <?php
+                    $count++;
+                    $song_path = BASE_PATH . "/song/viewdetail/" . $element['Song']['id'] . "/" . strtolower(str_replace(" ", "-", $element['Song']['name']));
+                    ?>
+                    <li class="item">
+                        <div class="song-info">
+                            <a class="song-name" href=<?= $song_path ?>> <?= $element['Song']['name'] ?> </a>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+        <?php else : ?>
+            <div>Have no song in database</div>
+        <?php endif ?>
 
-<div>
-    <span><?= $count ?> .</span>
-    <a href= <?= $song_path ?> > <?= $element['Song']['name'] ?> </a>
-    <audio controls>
-        <source src=<?php echo BASE_PATH.DS."public".DS."assets".DS."music".DS.$element['Song']['link'] ?> type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    
-</div>
-<?php endforeach; ?>
-<?php else: ?>
-<div>Have no song in database</div>
-<?php endif ?>
-<form action=<?php echo ARTIST_VIEWALL?>  method="post">
-<input type="submit" value="Back to Artist"></form>
-<?php include(HOME_PAGE);?>
+    </div>
+    <div class="right-column">
+        <div class="song-image-big" style="background-image: url(<?php echo $imgPath ?>)">
+        </div>
+        <h1><?php echo $artist['Artist']['name'] ?></h1>
+        <p> <?php echo $artist['Country']['name'] ?></p>
+        <p>Age: <?php echo $artist['Artist']['age'] ?></p>
+    </div>

@@ -1,151 +1,152 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0px;
-    font-family: Raleway;
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 960px;
-    padding-right: 10px;
-    padding-left: 10px;
+  margin: 0px;
+  font-family: Raleway;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 960px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .nav {
-    height: 50px;
-    width: 100%;
-    background-color: #fff;
-    position: relative;
-    font-weight: 800;
+  height: 50px;
+  width: 100%;
+  background-color: #fff;
+  position: relative;
+  font-weight: 800;
 }
 
 .nav>.nav-header {
-    display: inline;
+  display: inline;
 }
 
 .nav>.nav-header>.nav-title {
-    display: inline-block;
-    font-size: 22px;
-    color: #fff;
-    padding: 10px 10px 10px 10px;
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  padding: 10px 10px 10px 10px;
 }
 
 .nav>.nav-btn {
-    display: none;
+  display: none;
 }
 
 .nav>.nav-links {
-    display: inline;
-    float: right;
-    font-size: 18px;
+  display: inline;
+  float: right;
+  font-size: 18px;
 }
 
 .nav>.nav-links>a {
-    display: inline-block;
-    padding: 13px 10px 13px 10px;
-    text-decoration: none;
-    color: #D52020;
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #D52020;
 }
 
 .nav>.nav-links>a:hover {
-    background-color: #D52020;
-    color: #fff;
-    ;
+  background-color: #D52020;
+  color: #fff;
+  ;
 }
 
 .nav>#nav-check {
-    display: none;
+  display: none;
 }
 
 @media (max-width:600px) {
-    .nav>.nav-btn {
-        display: inline-block;
-        position: absolute;
-        right: 0px;
-        top: 0px;
-    }
-    .nav>.nav-btn>label {
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        padding: 13px;
-    }
-    .nav>.nav-btn>label:hover, .nav #nav-check:checked~.nav-btn>label {
-        background-color: rgba(0, 0, 0, 0.3);
-    }
-    .nav>.nav-btn>label>span {
-        display: block;
-        width: 25px;
-        height: 10px;
-        border-top: 2px solid #eee;
-    }
-    .nav>.nav-links {
-        position: absolute;
-        display: block;
-        width: 100%;
-        background-color: #333;
-        height: 0px;
-        transition: all 0.3s ease-in;
-        overflow-y: hidden;
-        top: 50px;
-        left: 0px;
-    }
-    .nav>.nav-links>a {
-        display: block;
-        width: 100%;
-    }
-    .nav>#nav-check:not(:checked)~.nav-links {
-        height: 0px;
-    }
-    .nav>#nav-check:checked~.nav-links {
-        height: calc(100vh - 50px);
-        overflow-y: auto;
-    }
+  .nav>.nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav>.nav-btn>label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav>.nav-btn>label:hover, .nav #nav-check:checked~.nav-btn>label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav>.nav-btn>label>span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav>.nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav>.nav-links>a {
+    display: block;
+    width: 100%;
+  }
+  .nav>#nav-check:not(:checked)~.nav-links {
+    height: 0px;
+  }
+  .nav>#nav-check:checked~.nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
 }
 
 .front-text {
-    margin-top: 5rem;
-    font-size: 3rem;
-    text-align: center;
+  margin-top: 5rem;
+  font-size: 3rem;
+  text-align: center;
 }
 
 .sub-header {
-    text-align: center;
-    font-size: 1.25rem;
-    margin-top: 1rem;
+  text-align: center;
+  font-size: 1.25rem;
+  margin-top: 1rem;
 }
 
 .artist-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1rem;
 }
 
 .artist {
-    height: 10rem;
-    width: 100%;
+  height: 10rem;
+  width: 100%;
 }
 
-.artist > .bg {
-    background-position: center;
-    background-size: cover;
-    height: 70%;
+.artist>.bg {
+  background-position: center;
+  background-size: cover;
+  height: 70%;
 }
 
 .artist-list>a {
-    display: flex;
-    margin-top: auto;
-    margin-bottom: auto;
-    text-decoration: none;
-    margin-top: 1rem;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-decoration: none;
+  margin-top: 1rem;
 }
 
-.artist > .artist-name {
-    text-decoration: none;
-    color: #D52020;
+.artist>.artist-name {
+  text-decoration: none;
+  color: #D52020;
 }
-.login-form{
+
+.login-form {
   width: calc(100% - 20px);
   max-width: 500px;
   background-color: #fff;
@@ -154,7 +155,7 @@ body {
   margin-right: auto;
 }
 
-.login-form h1{
+.login-form h1 {
   text-align: center;
   margin: 48px 0;
   font-size: 36px;
@@ -162,12 +163,12 @@ body {
   font-size: 36px;
 }
 
-.textb{
+.textb {
   margin-bottom: 12px;
   position: relative;
 }
 
-.textb input{
+.textb input {
   width: 100%;
   height: 70px;
   border: none;
@@ -179,7 +180,7 @@ body {
   padding: 14px 60px 0 10px;
 }
 
-.placeholder{
+.placeholder {
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 700;
@@ -192,7 +193,7 @@ body {
   pointer-events: none;
 }
 
-.show-password{
+.show-password {
   position: absolute;
   right: 20px;
   line-height: 70px;
@@ -201,13 +202,12 @@ body {
   cursor: pointer;
 }
 
-.textb input:focus ~ .placeholder,
-.textb input:valid ~ .placeholder{
+.textb input:focus~.placeholder, .textb input:valid~.placeholder {
   left: 10px;
   top: -16px;
 }
 
-.checkbox{
+.checkbox {
   display: flex;
   align-items: center;
   position: relative;
@@ -217,7 +217,7 @@ body {
   margin: 20px 0;
 }
 
-.checkbox input{
+.checkbox input {
   width: 24px;
   height: 24px;
   -webkit-appearance: none;
@@ -227,7 +227,7 @@ body {
   cursor: pointer;
 }
 
-.checkbox .fa-check{
+.checkbox .fa-check {
   position: absolute;
   color: #fff;
   font-size: 14px;
@@ -238,15 +238,15 @@ body {
   opacity: 0;
 }
 
-.checkbox input:checked{
+.checkbox input:checked {
   background-color: #bc252a;
 }
 
-.checkbox input:checked + .fa-check{
+.checkbox input:checked+.fa-check {
   opacity: 1;
 }
 
-.login-btn{
+.login-btn {
   display: block;
   width: 200px;
   height: 50px;
@@ -262,11 +262,11 @@ body {
   font-weight: 900;
 }
 
-.login-btn:hover{
+.login-btn:hover {
   opacity: .85;
 }
 
-.login-form a{
+.login-form a {
   display: block;
   text-align: center;
   text-decoration: none;
@@ -278,11 +278,11 @@ body {
   transition: .2s linear;
 }
 
-.login-form a:hover{
+.login-form a:hover {
   color: #111;
 }
 
-.login-btn:disabled{
+.login-btn:disabled {
   background-color: transparent;
   color: #ddd;
   border: 2px solid;
@@ -294,8 +294,88 @@ body {
   font-weight: 600 !important;
 }
 
+.admin-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.admin-choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #D52020;
+  width: 100%;
+  height: 10rem;
+  border-radius: 10px;
+}
+
+.admin-choice-icon {
+  display: inline-block;
+  filter: brightness(0) invert(1);
+  color: #fff;
+  height: 5rem;
+  width: auto;
+}
+
+.admin-choice-text {
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+}
+
+.admin-image {
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 2px rgb(0 0 0 / 10%);
+}
+
+.song-name {
+  text-decoration: none;
+  color: #D52020;
+  font-weight: 700;
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+}
+.song-image {
+  height: 100px;
+  width: 100px;
+  background-position: center;
+  background-size: cover;
+}
+.song-image-big {
+  width: 350px;
+  height: 350px;
+  background-position: center;
+  background-size: cover;
+}
+.artist-name {
+  text-decoration: none;
+  color: #333;
+}
+
+.song-info {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .song-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 1rem;
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
 }

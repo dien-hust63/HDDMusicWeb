@@ -13,6 +13,10 @@ class ArtistController extends Controller {
     }
 
     function viewdetail($id = null){
+        $login = new Login();
+
+        $this -> set('login', $login);
+        $this -> Artist -> showHasOne();
         $this -> Artist -> showHasOne();
         $this->Artist->showHMABTM();
         $artist = $this -> Artist -> query($id);
@@ -20,6 +24,11 @@ class ArtistController extends Controller {
     }
 
     function add(){
+        $login = new Login();
+
+        $this -> set('login', $login);
+
+        $this -> Artist -> showHasOne();
         $country = new Country();
         $countryset = $country -> query();
         $this -> set('country', $countryset);
@@ -44,6 +53,9 @@ class ArtistController extends Controller {
         }
     }
     function delete($id = null){
+        $login = new Login();
+
+        $this -> set('login', $login);
         $artist = $this -> Artist ->delete($id);
         $this -> set('artist', $artist);
     }

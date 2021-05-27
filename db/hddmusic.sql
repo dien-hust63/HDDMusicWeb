@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 26, 2021 lúc 07:25 PM
--- Phiên bản máy phục vụ: 10.4.19-MariaDB
--- Phiên bản PHP: 7.3.28
+-- Thời gian đã tạo: Th5 27, 2021 lúc 08:23 AM
+-- Phiên bản máy phục vụ: 10.4.14-MariaDB
+-- Phiên bản PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,7 +69,7 @@ INSERT INTO `artist` (`id`, `name`, `age`, `hometown`, `country`, `avatar`) VALU
 (8, 'MCK', 22, 'Hà Nội', 1, 'mck.jpg'),
 (9, 'Noo Phước Thịnh', 32, 'Hồ Chí Minh', 1, 'noophuocthinh.jpg'),
 (10, 'Bích Phương', 31, 'Hạ Long', 1, 'bichphuong.jpg'),
-(11, 'adaadad', 12, 'adadad', 1, '132381726_150855426511648_5534948104112629857_n.jpg');
+(11, 'Hồ Quang Hiếu', 12, 'Buôn Ma Thuột', 1, 'hoquanghieu.jpg');
 
 -- --------------------------------------------------------
 
@@ -194,7 +194,9 @@ INSERT INTO `playlist` (`id`, `name`, `user`) VALUES
 (5, 'aff', 7),
 (6, 'fdsgdfsg', 7),
 (7, 'adadadad', 7),
-(8, 'new playlist', 7);
+(8, 'new playlist', 7),
+(9, 'sdfgd', 7),
+(10, 'fdsafsf', 7);
 
 -- --------------------------------------------------------
 
@@ -207,6 +209,13 @@ CREATE TABLE `playlist_song` (
   `playlist` int(11) NOT NULL,
   `song` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `playlist_song`
+--
+
+INSERT INTO `playlist_song` (`id`, `playlist`, `song`) VALUES
+(4, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -367,13 +376,13 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT cho bảng `playlist`
 --
 ALTER TABLE `playlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `playlist_song`
 --
 ALTER TABLE `playlist_song`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `song`

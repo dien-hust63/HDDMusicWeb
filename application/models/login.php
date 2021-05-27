@@ -71,6 +71,7 @@ class Login extends Model {
 
                     // get result row (as an object)
                     $result_row = $result_of_login_user_check->fetch_object();
+                    
 
                     // using PHP 5.5's password_verify() function to check if the provided password fits
                     // the hash of that user's password

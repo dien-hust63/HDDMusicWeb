@@ -88,6 +88,9 @@ class SQLQuery {
 				$from .= 'ON `'.$this->_model.'`.`'.$singularAlias.'` = `'.$alias.'`.`id`  ';
 			}
 		}
+		if ($this->_hMABTM == 1 && isset($this->hasManyAndBelongsToMany)) {
+
+		}
 		if ($id) {
 			$conditions .= ' AND '.'`'.$this->_model.'`.`id` = \''.$id.'\'';
 		}
@@ -165,13 +168,33 @@ class SQLQuery {
 		return($result);
 	}
 
-	function customQuery($query){
+	function customQueryObject($query){
 		$result = mysqli_query($this->_dbHandle, $query);
 		if ($result) {
-			return $result;
+			return $result->fetch_all(MYSQLI_ASSOC);
 		}
 		else {
 			return 0;
+		}
+	}
+	function customQuery($query){
+		$result = mysqli_query($this->_dbHandle, $query);
+		if ($result) {
+			return $this->query();
+		}
+		else {
+			return -1;
+		}
+	}
+	function customQueryCheck($query){
+		$result = mysqli_query($this->_dbHandle, $query);
+		$nrows = mysqli_num_rows($result);
+		
+		if ($result) {
+			return $nrows;
+		}
+		else {
+			return -1;
 		}
 	}
     /** Delete an Object **/

@@ -40,7 +40,7 @@ $logged = isset($_SESSION['user_login_status']) || isset($_SESSION['admin_login_
 				<a href=<?php echo PATH_LOG ?>>Login</a>
 				<a href=<?php echo PATH_REG ?>>Register</a>
 			<?php else : ?>
-				<a href="#"> Your playlists</a>
+				<a href=<?php echo PLAYLIST_VIEWALL?>> Your playlists</a>
 				<form method="post" action=<?php echo PATH_LOG?> style="display: inline">
 					<button type="submit" type="submit" name="logout" value="Log out" class="link-button">
 						Logout

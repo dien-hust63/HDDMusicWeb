@@ -88,6 +88,9 @@ class SQLQuery {
 				$from .= 'ON `'.$this->_model.'`.`'.$singularAlias.'` = `'.$alias.'`.`id`  ';
 			}
 		}
+		if ($this->_hMABTM == 1 && isset($this->hasManyAndBelongsToMany)) {
+
+		}
 		if ($id) {
 			$conditions .= ' AND '.'`'.$this->_model.'`.`id` = \''.$id.'\'';
 		}
@@ -165,10 +168,19 @@ class SQLQuery {
 		return($result);
 	}
 
+	function customQueryObject($query){
+		$result = mysqli_query($this->_dbHandle, $query);
+		if ($result) {
+			return $result->fetch_all(MYSQLI_ASSOC);
+		}
+		else {
+			return 0;
+		}
+	}
 	function customQuery($query){
 		$result = mysqli_query($this->_dbHandle, $query);
 		if ($result) {
-			return $result;
+			return $result->fetch_array();
 		}
 		else {
 			return 0;

@@ -19,8 +19,3 @@ $number = 0;
 	</span>
 	</a><br/>
 <?php endforeach?>
-<button><a href=<?php echo SONG_VIEWALL;?>>All songs</a></button>
-<br/>
-<button><a href=<?php echo ADD_PLAYLIST?>>Add playlist</a></button>
-<br/>
-<button><a href=<?php echo PLAYLIST_VIEWALL?>>All playlists</a></button>

@@ -42,11 +42,17 @@ $isAdmin = isset($_SESSION['admin_login_status']) && $_SESSION['admin_login_stat
 				<a href=<?php echo PATH_REG ?>>Register</a>
 			<?php elseif ($isAdmin): ?>
 				<a href=<?php echo PATH_HOME ?>>Admin</a>
+				<form method="post" action=<?php echo PATH_LOG?> style="display: inline">
+					<button type="submit" type="submit" name="logout" value="Log out" class="logout">
+						Logout
+					</button>
+				</form>
+
 			<?php else : ?>
 
 				<a href=<?php echo PLAYLIST_VIEWALL?>> Your playlists</a>
 				<form method="post" action=<?php echo PATH_LOG?> style="display: inline">
-					<button type="submit" type="submit" name="logout" value="Log out" class="link-button">
+					<button type="submit" type="submit" name="logout" value="Log out" class="logout">
 						Logout
 					</button>
 				</form>

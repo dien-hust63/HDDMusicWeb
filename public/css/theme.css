@@ -1,5 +1,5 @@
 * {
-  box-sizing: border-box;
+ /* box-sizing: border-box; */
 }
 
 body {
@@ -378,4 +378,102 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 1rem;
+}
+.logout {
+  font-size: 18px;
+  background-color: #fff;
+  border: 0px;
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #D52020;
+}
+.logout:hover{
+  background-color: #D52020;
+  color: #fff;
+}
+.add-btn {
+  font-size: 18px;
+  background-color: #fff;
+  border: 0px;
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #D52020;
+}
+.add-btn:hover{
+  background-color: #D52020;
+  color: #fff;
+}
+.btn-playlist{
+  position: absolute;
+  left: 75%;
+  font-size: 18px;
+  background-color: #fff;
+  border: 0px;
+  box-sizing: unset;
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #D52020;
+}
+.btn-playlist:hover{
+  background-color: #D52020;
+  color: #fff;
+}
+#add_playlist_form {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  color: #555;
+  margin-top: 30px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 8px;
+  transition: .2s linear;
+}
+.add-btn-form {
+  font-size: 18px;
+  background-color: #D52020;
+  border-radius: 4px;
+  border: 0px;
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #fff;
+}
+.add-btn-form:hover{
+  background-color: #9d9d9d;
+  color: #D52020;
+}
+
+.btn-delete{
+  font-size: 18px;
+  background-color: #fff;
+  border: 0px;
+  position: absolute;
+  left: 75%;
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #D52020;
+}
+.btn-delete:hover{
+  background-color: #D52020;
+  color: #fff;
+}
+#add_artist_form{
+  padding: 20px; 
+  margin-left: 35%; 
+  margin-top: 10%;
+} 
+#add_song_form{
+  padding: 20px; 
+  margin-left: 35%; 
+  margin-top: 10%;
+}
+.input {
+  padding: 6px;
+  margin: 10px;
 }

@@ -26,7 +26,7 @@ $number = 0;
 					<?php endforeach ?>
 				<?php endif ?>
 			</div>
-			<button><a href=<?php echo BASE_PATH . "/song/delete/" . $songitem['Song']['id'] . "/" ?>>Delete</a></button><br />
+			<button class="btn-delete"><a href=<?php echo BASE_PATH . "/song/delete/" . $songitem['Song']['id'] . "/" ?>>Delete</a></button><br />
 		</li>
 	<?php endforeach ?>
 	<?php else:?>

@@ -11,7 +11,6 @@ class PlaylistController extends Controller {
                 $user_id = $_SESSION['user_id'];
                 $query = "INSERT INTO `playlist`(`name`, `user`) VALUES ('$playlist_name', '$user_id')";
                 if($this->Playlist -> customQuery($query)){
-                    echo "add successfully";
                 }
             }
         }

@@ -46,7 +46,8 @@ class ArtistController extends Controller {
     
                 $query = "INSERT INTO `artist`( `name`, `age`, `hometown`, `country`, `avatar`) VALUES ('$artist_name', '$artist_age', '$artist_hometown', '$artist_country','$file_name')";
                 if($this -> Artist -> customQuery($query)){
-                    echo "add successfully";
+                    $result = $this -> Artist -> customQuery($query);
+                    $this -> set('$result', $result);
                 }
            
             }

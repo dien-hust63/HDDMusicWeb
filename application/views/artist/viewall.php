@@ -2,6 +2,13 @@
 $number = 0;
 
 ?>
+<div style="width:30%">
+	<form id ="search_artist_form" style="margin-top: 3px;">
+		<input type="text" placeholder="Nhập tên tác giả" id="search_artist" onkeyup="showResult(this.value)">
+		</input>
+		<div id="artist_live_search" ></div>
+	</form>
+</div>
 <h1>Artists on hustmp3:</h1>
 <ul>
 	<?php if (isset($_SESSION['admin_login_status']) AND $_SESSION['admin_login_status'] == 1):?>
@@ -40,3 +47,23 @@ $number = 0;
 	<?php endif?>
 </ul>
 <?php include(HOME_PAGE) ?>
+<script>
+	function showResult(str) {
+	console.log("alo");
+	if (str.length==0) {
+		document.getElementById("artist_live_search").innerHTML="";
+		document.getElementById("artist_live_search").style.border="0px";
+		return;
+	}
+	var xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+		if (this.readyState==4 && this.status==200) {
+		document.getElementById("artist_live_search").innerHTML=this.responseText;
+		document.getElementById("artist_live_search").style.border="1px solid #A5ACB2";
+		document.getElementById("artist_live_search").style.width="65%";
+		}
+	}
+	xmlhttp.open("POST","http://localhost/HDDMusicWeb/artist/search/"+ str);
+	xmlhttp.send();
+	}
+</script>

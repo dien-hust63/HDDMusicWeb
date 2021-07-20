@@ -2,6 +2,15 @@
 $number = 0;
 
 ?>
+<div style="width:30%">
+	<form id ="search_song_form" style="margin-top: 3px;">
+		<input type="text" placeholder="Nhập tên bài hát" id="search_song" onkeyup="showResult(this.value)">
+		</input>
+		<div id="song_live_search" ></div>
+	</form>
+</div>
+
+<h1>
 <h1>
 	All songs available on hustmp3:
 </h1>
@@ -54,3 +63,23 @@ $number = 0;
 	<?php endif?>
 </ul>
 <?php include(HOME_PAGE) ?>
+<script>
+	function showResult(str) {
+	console.log("alo");
+	if (str.length==0) {
+		document.getElementById("song_live_search").innerHTML="";
+		document.getElementById("song_live_search").style.border="0px";
+		return;
+	}
+	var xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+		if (this.readyState==4 && this.status==200) {
+		document.getElementById("song_live_search").innerHTML=this.responseText;
+		document.getElementById("song_live_search").style.border="1px solid #A5ACB2";
+		document.getElementById("song_live_search").style.width="65%";
+		}
+	}
+	xmlhttp.open("POST","http://localhost/HDDMusicWeb/song/search/"+ str);
+	xmlhttp.send();
+	}
+</script>

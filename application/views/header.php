@@ -8,6 +8,7 @@ $isAdmin = isset($_SESSION['admin_login_status']) && $_SESSION['admin_login_stat
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>HDD Music Website</title>
 	<style>
 		<?php require(ROOT . "/public/css/theme.css"); ?>

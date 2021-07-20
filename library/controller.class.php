@@ -30,6 +30,7 @@ class Controller {
 	}
 
 	function __destruct() {
+		if($this-> _action == "search") $this->doNotRenderHeader=1;
 		if ($this->render) {
 			$this->_template->render($this->doNotRenderHeader);
 		}

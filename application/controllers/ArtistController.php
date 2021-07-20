@@ -46,10 +46,8 @@ class ArtistController extends Controller {
     
                 $query = "INSERT INTO `artist`( `name`, `age`, `hometown`, `country`, `avatar`) VALUES ('$artist_name', '$artist_age', '$artist_hometown', '$artist_country','$file_name')";
                 if($this -> Artist -> customQuery($query)){
-                    $result = $this -> Artist -> customQuery($query);
-                    $this -> set('$result', $result);
+
                 }
-           
             }
         }
     }
@@ -59,5 +57,23 @@ class ArtistController extends Controller {
         $this -> set('login', $login);
         $artist = $this -> Artist ->delete($id);
         $this -> set('artist', $artist);
+    }
+
+    function search($name = NULL) {
+        $sql = "SELECT * FROM `artist` WHERE name LIKE '%$name%'";
+        $response = "";
+        if($result = $this->Artist->customQueryOld($sql)){
+            while ($row = mysqli_fetch_row($result)) {
+                $artist_id = $row[0];
+                $artist_name = $row[1];
+                $path = BASE_PATH . "/artist/viewdetail/" . $artist_id . "/" . strtolower(str_replace(" ", "-", $artist_name)); 
+                if ($response=="") {
+                    $response="<a href= $path >".$artist_name."</a>";
+                }else{
+                    $response .= "<br><a href= $path >".$artist_name."</a>";
+                }
+        }
+        echo $response === "" ? "No sugesstion" : $response;
+        }
     }
 }

@@ -67,8 +67,8 @@ body {
   }
   .nav>.nav-btn>label {
     display: inline-block;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 24px;
     padding: 13px;
   }
   .nav>.nav-btn>label:hover, .nav #nav-check:checked~.nav-btn>label {
@@ -78,7 +78,7 @@ body {
     display: block;
     width: 25px;
     height: 10px;
-    border-top: 2px solid #eee;
+    border-top: 2px solid #000;
   }
   .nav>.nav-links {
     position: absolute;
@@ -86,7 +86,6 @@ body {
     width: 100%;
     background-color: #333;
     height: 0px;
-    transition: all 0.3s ease-in;
     overflow-y: hidden;
     top: 50px;
     left: 0px;
@@ -99,8 +98,18 @@ body {
     height: 0px;
   }
   .nav>#nav-check:checked~.nav-links {
-    height: calc(100vh - 50px);
-    overflow-y: auto;
+    height: 200px;
+    overflow-y: unset;
+  }
+  ul {
+    padding: 0 !important;
+  }
+  .song-layout {
+    display: block !important;
+  }
+  .song-image-big {
+    width: 300px !important;
+    height: 300px !important;
   }
 }
 
@@ -476,4 +485,11 @@ body {
 .input {
   padding: 6px;
   margin: 10px;
+}
+
+.left-column {
+  border: solid 1px red;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }

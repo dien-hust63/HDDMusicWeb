@@ -1,11 +1,9 @@
-<h1>view detail</h1>
 <?php foreach ($playlist_name as $playlistitem):?>
-    <h4><?php $playlistname = $playlistitem['Playlist']['name']; 
-                $playlistid = $playlistitem['Playlist']['id'];
-                echo $playlistname; break;?></h4>
-<?php endforeach ?>
-<br/>
-<button><a href=<?php echo BASE_PATH . DS . 'playlist' . DS . 'addsong' . DS . $playlistid?>>Add song</a></button>
+    <?php $playlistName = $playlistitem['Playlist']['name'];?>
+<?php endforeach?>
+<h1><?php echo $playlistName;?></h1>
+
+<button class="add-btn-form"><a href=<?php echo BASE_PATH . DS . 'playlist' . DS . 'addsong' . DS . $playlist_id . DS ?>>Add song</a></button>
 <br>
 <?php $number = 0?>
 <?php
@@ -23,13 +21,18 @@
 ?>
 
 <?php for($i = 0; $i < sizeof($song_id); $i++):?>
-        <?php if(strlen($song_id[$i]) == 0) break;?>
+        <?php if(strlen($song_id[$i]) == 0 ) break;?>
 		<?php $path = BASE_PATH."/song/viewdetail/".$song_id[$i]."/".strtolower(str_replace(" ","-",$song_name[$i])); ?>
-		<a class="big" href="<?php echo  $path?>">
-		<span class="playlist-detail">
-		<?php echo ++$number?>
-		<?php echo $song_name[$i]?>
-		</span>
-		</a>
-        <button><a href=<?php echo BASE_PATH . DS . 'playlist' . DS . 'deletesong' . DS . $playlistid . DS . $song_id[$i]?>>Delete</a></button><br/>
+        <li class="item">
+			<div class="song-image" style="background-image: url(<?php echo $imagePath ?>)">
+			</div>
+			<div class="song-info">
+				<a class="song-name" class="big" href="<?php echo  $path ?>">
+					<span class="song">
+						<?php echo $song_name[$i]?>
+					</span>
+				</a>
+			</div>
+            <button class="btn-delete"><a href=<?php echo BASE_PATH . DS . 'playlist' . DS . 'deletesong' . DS . $playlist_id . DS . $song_id[$i]?>>Delete</a></button>
+		</li>
 <?php endfor?>

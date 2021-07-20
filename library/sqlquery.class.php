@@ -186,6 +186,15 @@ class SQLQuery {
 			return -1;
 		}
 	}
+	function customQueryOld($query){
+		$result = mysqli_query($this->_dbHandle, $query);
+		if ($result) {
+			return $result;
+		}
+		else {
+			return -1;
+		}
+	}
 	function customQueryCheck($query){
 		$result = mysqli_query($this->_dbHandle, $query);
 		$nrows = mysqli_num_rows($result);

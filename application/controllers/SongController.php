@@ -52,14 +52,14 @@ class SongController extends Controller {
 
                 $query = "INSERT INTO `song`(`name`,`link`, `image`, `genre`,`country`) VALUES ('$song_name','$file_name', '$image_file','$genre', '$country')";
                 
-                if($this -> Song -> customQuery($query)){
+                if($this -> Song -> customQueryOld($query)){
                 }
                 $query2 = "SELECT `id` FROM `song` WHERE `name` = '$song_name' AND `link` = '$file_name' ";
-                $result = $this -> Song -> customQuery($query2);
+                $result = $this -> Song -> customQueryOld($query2);
                 $row = mysqli_fetch_row($result);
                 $song_id = $row[0];
                 $query3 = "INSERT INTO `artist_song`(`artist`, `song`) VALUES ($song_artist, $song_id )";
-                $this -> Song -> customQuery($query3);
+                $this -> Song -> customQueryOld($query3);
            
             }
         }
@@ -72,6 +72,24 @@ class SongController extends Controller {
         } else {
             $song = $this -> Song;
             $this -> set('song', $song);
+        }
+    }
+
+    function search($name = NULL) {
+        $sql = "SELECT * FROM `song` WHERE name LIKE '%$name%'";
+        $response = "";
+        if($result = $this->Song->customQueryOld($sql)){
+            while ($row = mysqli_fetch_row($result)) {
+                $song_id = $row[0];
+                $song_name = $row[1];
+                $path = BASE_PATH . "/song/viewdetail/" . $song_id . "/" . strtolower(str_replace(" ", "-", $song_name)); 
+                if ($response=="") {
+                    $response="<a href= $path >".$song_name."</a>";
+                }else{
+                    $response .= "<br><a href= $path >".$song_name."</a>";
+                }
+        }
+        echo $response === "" ? "No sugesstion" : $response;
         }
     }
 }

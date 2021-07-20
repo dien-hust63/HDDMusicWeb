@@ -1,21 +1,26 @@
-<?php
-    echo "<br/> Hey ". $_SESSION['user_name'] . ". You are logged in.
-    Try to close this browser tab and open it again. Still logged in!";
-    require_once(LOG_OUT);
-    ?>
-<h1>User Page</h1>
-<h3>This list of artists</h3>
+<h4 style="margin-left:20px;"><?php
+    echo "<br/>Hey user ". $_SESSION['user_name'] . ". You are logged in !";
+?></h4>
+<h1 class="front-text">Welcome to HustMP3</h1>
+<h3 class="sub-header">Choose your favorite artist and enjoy the music</h3>
 
-<?php 
+<?php
 $number = 0;
 
 ?>
-<?php foreach ($artist as $artistitem):?>
-	<?php $path = BASE_PATH."/artist/viewdetail/".$artistitem['Artist']['id']."/".strtolower(str_replace(" ","-",$artistitem['Artist']['name'])); ?>
-	<a class="big" href="<?php echo  $path?>">
-	<span class="artist">
-	<?php echo ++$number?>
-	<?php echo $artistitem['Artist']['name']?>
-	</span>
-	</a><br/>
-<?php endforeach?>
+<div class="artist-list">
+	<?php foreach ($artist as $artistitem) : ?>
+		<?php $path = BASE_PATH . "/artist/viewdetail/" . $artistitem['Artist']['id'] . "/" . strtolower(str_replace(" ", "-", $artistitem['Artist']['name'])); ?>
+		<a class="big" href="<?php echo  $path ?>">
+			<div class="artist">
+				<div class="bg" style="background-image: url(<?php echo BASE_PATH."/public/assets/img/".$artistitem['Artist']['avatar'] ?>)"></div>
+				<!--
+					<?php echo ++$number ?> 
+				-->
+				<h3 class="artist-name">
+					<?php echo $artistitem['Artist']['name']?>
+				</h3>
+			</div>
+		</a>
+	<?php endforeach ?>
+</div>

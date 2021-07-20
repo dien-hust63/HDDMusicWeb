@@ -16,7 +16,7 @@ $number = 0;
 					</span>
 				</a>
 			</div>
-		<button class="btn-delete"><a href= <?php echo BASE_PATH . DS . 'playlist'. DS . 'addsong' . DS . $playlist[0]['Playlist']['id']. DS .$songitem['Song']['id']. '/'?>>ADD</a></button>
+		<button class="btn-delete"><a href= <?php echo BASE_PATH . DS . 'playlist'. DS . 'addsong' . DS . $playlist_id. DS .$songitem['Song']['id']. '/'?>>ADD</a></button>
 		</li>
 	<?php endforeach?>
 <?php else:?>
